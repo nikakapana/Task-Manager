@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {MainLayoutModule} from "./main-layout/main-layout.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
+import {RouterModule, RouterOutlet} from "@angular/router";
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import {HttpClientModule} from "@angular/common/http";
     MainLayoutModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    RouterModule,
+    RouterOutlet
 
   ],
   providers: [],
