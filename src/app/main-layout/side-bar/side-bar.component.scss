@@ -1,0 +1,12 @@
+.acordion {
+  margin-top: 3rem;
+  display: block;
+  a {
+    cursor: pointer;
+
+    &:hover {
+      background-color: darkgreen;
+    }
+
+  }
+}
