@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 export class AuthService extends BaseService {
 
   signin(payLoad: SignIn): Observable<AuthResponse> {
-    return this.post<AuthResponse>('/auth/login', payLoad);
+    return this.post<AuthResponse>('auth/login', payLoad);
   }
 
   signup(payLoad: SignUp): Observable<AuthResponse> {
-    return this.post<AuthResponse>('/auth/signup', payLoad);
+    return this.post<AuthResponse>('auth/signup', payLoad);
   }
 }
