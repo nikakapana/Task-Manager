@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,13 +18,18 @@ export class SignupComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
 
   submit() {
     console.log(this.form.value)
+    this.authService.signup(this.form.value).subscribe(res => {
+      console.log(res)
+    })
     if (this.form.valid) {
       // logic for submitting the form data goes here
       console.log('Form is valid');
