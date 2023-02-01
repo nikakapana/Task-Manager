@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
+
+
 
 @Component({
   selector: 'app-project-add',
@@ -8,17 +10,30 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class ProjectAddComponent implements OnInit {
 
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
 
-  constructor( private _formBuilder: FormBuilder) { }
 
+
+  constructor( ) {}
 
   ngOnInit(): void {
-  }
 
+    }
+
+
+  form: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    abrev: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    color: new FormControl('', Validators.required),
+  }
+  )
+
+  errorMessage?: string
+
+  submit() {
+    this.form.markAllAsTouched()
+
+    if (this.form.invalid) return
+
+  }
 }
