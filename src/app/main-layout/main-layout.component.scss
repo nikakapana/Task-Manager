@@ -9,6 +9,11 @@
     flex-direction: row;
     height: 100vh;
 
+    .mid {
+      max-width: 100rem;
+      margin: 5rem auto;
+    }
+
     aside {
       width: 15%;
       height: auto;
