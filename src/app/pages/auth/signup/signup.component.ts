@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value, 'asd')
+    console.log(this.form.value)
     this.authService.signup(this.form.value).subscribe(res => {
       console.log(res)
     })
