@@ -6,6 +6,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import {RouterModule, RouterOutlet} from "@angular/router";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatButtonModule} from "@angular/material/button";
         RouterModule,
         RouterOutlet,
         MatToolbarModule,
-        MatButtonModule
+        MatButtonModule,
+        MatExpansionModule
     ],
   exports: [
     MainLayoutComponent

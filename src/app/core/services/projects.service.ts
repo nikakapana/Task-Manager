@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {BaseService} from "./base.service";
 
 import {Observable} from "rxjs";
+import {Project} from "../interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,8 @@ import {Observable} from "rxjs";
 export class ProjectsService extends BaseService{
 
 
-getProjects(): Observable<any> {
-
-  return this.get<any>('project/all')
-
-}
-
+  create(project: Project): Observable<Project>{
+    return this.post<Project>('product', project)
+  }
 
 }

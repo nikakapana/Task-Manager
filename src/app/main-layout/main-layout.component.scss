@@ -5,14 +5,21 @@
 
 
   .main {
-    display: flex;
-    background-color: darkred;
-    height: 100vh;
+
+width: 100%;
+display: flex;
+    flex-direction: row;
+
+
+    .mid {
+      max-width: 100rem;
+      margin: 5rem auto;
+    }
+
   }
-    aside {
-      width: 15%;
-      height: auto;
-      background-color: green;
+    .side {
+      width: 20%;
+
     }
 
 
