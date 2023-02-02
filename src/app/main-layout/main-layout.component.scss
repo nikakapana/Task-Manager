@@ -5,22 +5,30 @@
 
 
   .main {
-
-width: 100%;
-display: flex;
+    display: flex;
     flex-direction: row;
-
+    height: 100vh;
 
     .mid {
       max-width: 100rem;
       margin: 5rem auto;
     }
 
-  }
-    .side {
-      width: 20%;
-
+    aside {
+      width: 15%;
+      height: auto;
+      background-color: rgb(53, 14, 117);
     }
+
+    main {
+      width: 85%;
+      height: auto;
+      position: relative;
+      background-color: #1C1C1C;
+    }
+  }
+
+
 
 
 }
