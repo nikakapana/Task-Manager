@@ -42,8 +42,8 @@ export class AuthInterceptor implements HttpInterceptor {
         catchError(err => {
           switch (err.status) {
             case 401:
-              this.authFacadeService.signOut();
-              break;
+              return this.handleError401(request, next);
+
             case 403:
               this.authFacadeService.signOut();
               break
