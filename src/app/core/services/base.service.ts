@@ -1,18 +1,14 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+)
 export class BaseService {
 
   apiUrl = environment.fbDbUrl
-  constructor(
-    private http: HttpClient
-  ) { }
-
+  http: HttpClient = inject(HttpClient)
 
   post<T>(url: string, body?: any): Observable<T> {
     return this.http.post<T>(this.apiUrl + url, body)

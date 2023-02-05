@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from "../../../core/services/auth.service";
+import {Subject, takeUntil} from "rxjs";
+import {Router} from "@angular/router";
+import {AuthFacadeService} from "../auth.facade.service";
 
 
 @Component({
@@ -8,7 +10,7 @@ import {AuthService} from "../../../core/services/auth.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy  {
 
   form: FormGroup = new FormGroup(
     {
@@ -16,7 +18,13 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
     })
 
-  constructor(private authService: AuthService) {
+
+  sub$ = new Subject()
+
+  constructor(
+    private authFacadeService: AuthFacadeService,
+  private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -24,9 +32,26 @@ export class LoginComponent implements OnInit {
 
 
   submit() {
+    this.form.markAllAsTouched()
+
+    if (this.form.invalid) return
     console.log(this.form.value)
-    this.authService.signin(this.form.value).subscribe(res => {
-      console.log(res)
-    })
+    this.authFacadeService.login(this.form.value)
+      .pipe(takeUntil(this.sub$))
+      .subscribe( {
+          next: res => {
+            if(res) {
+              console.log(res)
+              this.router.navigate(['/'])
+            }
+          }
+        }
+
+      )
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.next(null)
+    this.sub$.complete()
   }
 }

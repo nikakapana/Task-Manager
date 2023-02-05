@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
+import {Subject, takeUntil} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy  {
 
   form: FormGroup = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -16,22 +18,27 @@ export class SignupComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   })
 
-
+  sub$ = new Subject()
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnDestroy(): void {
+        // throw new Error();
+    }
+
 
   submit() {
     console.log(this.form.value)
-    this.authService.signup(this.form.value).subscribe(res => {
+    this.authService.signup(this.form.value)
+      .pipe(takeUntil(this.sub$))
+      .subscribe(res => {
       console.log(res)
     })
     if (this.form.valid) {
-      // logic for submitting the form data goes here
+      this.router.navigate(["/auth/login"])
       console.log('Form is valid');
     } else {
       console.log('Form is invalid');
@@ -39,5 +46,9 @@ export class SignupComponent implements OnInit {
     }
 
 
+  }
+  ngOnInit(): void {
+    this.sub$.next(null)
+    this.sub$.complete()
   }
 }

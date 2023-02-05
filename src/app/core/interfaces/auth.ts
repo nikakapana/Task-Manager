@@ -1,4 +1,5 @@
 import { User } from "./user";
+import {Token} from "./token";
 
 export interface SignUp {
     firstName: string;
@@ -7,16 +8,11 @@ export interface SignUp {
     password: string;
 }
 
-export interface SignIn {
+export interface Login {
     email: string;
     password: string;
 }
 
-export interface Token {
-    expiresIn: number;
-    accessToken: string;
-    refreshToken: string;
-}
 
 export interface AuthResponse {
     user: User;
