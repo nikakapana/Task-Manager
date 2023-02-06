@@ -11,9 +11,11 @@ import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 import {CookieService} from "ngx-cookie-service";
 
 
+
 @NgModule({
   declarations: [
     AppComponent
+
   ],
   imports: [
     BrowserModule,
