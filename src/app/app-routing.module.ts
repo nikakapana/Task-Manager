@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {MainLayoutComponent} from "./main-layout/main-layout.component";
+import {AuthGuard} from "./core/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'projectadd',
+        canActivate: [AuthGuard],
         loadChildren: () => import('./pages/manager/project-add/project-add.module').then(m => m.ProjectAddModule)
       }
 ]

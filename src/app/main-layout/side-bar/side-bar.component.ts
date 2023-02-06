@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthFacadeService} from "../../pages/auth/auth.facade.service";
 
 
 @Component({
@@ -11,7 +12,7 @@ export class SideBarComponent implements OnInit {
 
   panelOpenState = false;
   constructor(
-
+    private authFacadeService: AuthFacadeService
 
   ) { }
 
@@ -19,6 +20,8 @@ export class SideBarComponent implements OnInit {
 
   }
 
-
+  get userIsAuthenticated() {
+    return this.authFacadeService.token
+  }
 
 }
