@@ -27,7 +27,7 @@ export class ProjectAddEditComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    abrev: new FormControl('', Validators.required),
+      abbreviation: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     color: new FormControl('', Validators.required),
   }

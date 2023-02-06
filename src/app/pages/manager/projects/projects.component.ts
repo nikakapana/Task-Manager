@@ -22,10 +22,11 @@ export class ProjectsComponent implements OnInit {
 
 
   getAll() {
-    this.projectsService.getProjects()
-      .pipe(takeUntil(this.sub$))
+    this.projectsService.getMyProjects()
+      // .pipe(takeUntil(this.sub$))
       .subscribe(res => {
         this.projects = res
+        console.log(this.projects)
       })
   }
 

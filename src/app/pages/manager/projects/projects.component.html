@@ -1,8 +1,12 @@
 <h1>projects</h1>
 
-<div *ngFor="let item of projects">
-  <div>{{item?.name}}</div>
-  <div>{{item?.abbreviation}}</div>
+<ul *ngFor="let item of projects">
+  <li>{{ item.id }}</li>
+  <li>{{ item.name }}</li>
+  <li>{{ item.abbreviation }}</li>
+  <li>{{ item.description }}</li>
+  <li>{{ item.color }}</li>
+
+</ul>
 
 
-</div>

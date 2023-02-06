@@ -10,9 +10,13 @@ import {Project} from "../interfaces";
 export class ProjectsService extends BaseService{
 
 
-getProjects() : Observable<Project[]> {
-  return this.get<Project[]>('project')
+getAllProjects() : Observable<Project[]> {
+  return this.get<Project[]>('project/all')
 }
+
+  getMyProjects() : Observable<Project[]> {
+    return this.get<Project[]>('project/my')
+  }
 
 
   getOne(id: string): Observable<Project> {
