@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import { BaseService } from './base.service';
-import { SignIn, AuthResponse, SignUp } from '../interfaces/auth';
-import { Observable } from 'rxjs';
+import {AuthResponse, SignUp, Login} from '../interfaces';
+import {Observable} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends BaseService {
+signup(payload: SignUp): Observable<AuthResponse> {
+  return this.post<AuthResponse>('auth/signup', payload);
+}
 
-  signin(payLoad: SignIn): Observable<AuthResponse> {
-    return this.post<AuthResponse>('auth/login', payLoad);
+  login(payload: Login): Observable<AuthResponse> {
+    return this.post<AuthResponse>('auth/login', payload);
   }
 
-  signup(payLoad: SignUp): Observable<AuthResponse> {
-    return this.post<AuthResponse>('auth/signup', payLoad);
+  refreshToken(refresh: string): Observable<AuthResponse> {
+    return this.post('auth/token', { refreshToken: refresh });
   }
 }

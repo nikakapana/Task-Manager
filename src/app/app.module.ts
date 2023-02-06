@@ -5,8 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MainLayoutModule} from "./main-layout/main-layout.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RouterModule, RouterOutlet} from "@angular/router";
+import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
+import {CookieService} from "ngx-cookie-service";
 
 
 @NgModule({
@@ -23,7 +25,16 @@ import {RouterModule, RouterOutlet} from "@angular/router";
     RouterOutlet
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    CookieService
+
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
