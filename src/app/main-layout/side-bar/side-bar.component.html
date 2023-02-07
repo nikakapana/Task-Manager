@@ -1,3 +1,6 @@
+
+
+<ng-container *ngIf="userIsAuthenticated;">
 <mat-accordion class="acordion">
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
@@ -6,15 +9,15 @@
       </mat-panel-title>
 
     </mat-expansion-panel-header>
-    <a routerLink="projectadd">create new project +</a>
+    <a routerLink="projects/create">create new project +</a>
     <br>
     <br>
     <hr>
     <br>
-    <a >All projects</a>
+    <a routerLink="projects" >All projects</a>
   </mat-expansion-panel>
 
 
 </mat-accordion>
 
-
+</ng-container>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {MainLayoutComponent} from "./main-layout/main-layout.component";
+import {AuthGuard} from "./core/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -15,8 +16,9 @@ const routes: Routes = [
         loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
       },
       {
-        path: 'projectadd',
-        loadChildren: () => import('./pages/manager/project-add/project-add.module').then(m => m.ProjectAddModule)
+        path: 'projects',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/manager/projects/projects.module').then(m => m.ProjectsModule)
       }
 ]
   }

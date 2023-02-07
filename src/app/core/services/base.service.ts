@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 
@@ -15,7 +15,7 @@ export class BaseService {
   }
 
   get<T>(url: string, params?: any): Observable<T> {
-    return this.http.get<T>(this.apiUrl+ url, {params})
+    return this.http.get<T>(this.apiUrl+ url);
   }
 
   delete<T>(url: string): Observable<T> {
