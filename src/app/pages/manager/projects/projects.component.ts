@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsService } from "../../../core/services/projects.service";
-import { Subject, takeUntil } from "rxjs";
-import { Project } from "../../../core/interfaces";
+import {ProjectsService} from "../../../core/services/projects.service";
+import {Subject, takeUntil} from "rxjs";
+import {Project} from "../../../core/interfaces";
 
 @Component({
   selector: 'app-projects',
@@ -27,10 +27,7 @@ export class ProjectsComponent implements OnInit {
       .subscribe(res => {
         this.projects = res
         console.log(this.projects)
-
       })
   }
-
-
 
 }

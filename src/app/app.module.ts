@@ -9,18 +9,13 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RouterModule, RouterOutlet} from "@angular/router";
 import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 import {CookieService} from "ngx-cookie-service";
-
-import { ProjectBoardComponent } from './pages/manager/project-board/project-board.component';
-
 import {ProjectInterceptor} from "./core/interceptors/project.interceptor";
-
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProjectBoardComponent
+    AppComponent
 
   ],
   imports: [

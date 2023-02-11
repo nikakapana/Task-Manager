@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectsComponent } from "./projects.component";
-import { ProjectAddEditComponent } from "../project-add-edit/project-add-edit.component";
-import { ProjectBoardComponent } from '../project-board/project-board.component';
+import {ProjectsComponent} from "./projects.component";
+import {ProjectAddEditComponent} from "../project-add-edit/project-add-edit.component";
 
 const routes: Routes = [
   {
@@ -16,10 +15,6 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: ProjectAddEditComponent
-  },
-  {
-    path: 'board/:id',
-    component: ProjectBoardComponent
   }
 ];
 
