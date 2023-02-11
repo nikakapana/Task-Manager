@@ -8,8 +8,8 @@ max-width: 90vw;
 
   .main {
 
-width: 100%;
-display: flex;
+    width: 100%;
+    display: flex;
     flex-direction: row;
 
 
@@ -20,14 +20,10 @@ display: flex;
     }
 
   }
-    .side {
-      width: 20%;
 
-    }
-
-
+  .side {
+    width: 20%;
   }
 
 
-
-
+}

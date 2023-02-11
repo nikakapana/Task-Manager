@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsService } from "../../../core/services/projects.service";
-import { Subject, takeUntil } from "rxjs";
-import { Project } from "../../../core/interfaces";
+import { Project } from 'src/app/core/interfaces/project';
+import { ProjectsService } from 'src/app/core/services/projects.service';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  selector: 'app-project-board',
+  templateUrl: './project-board.component.html',
+  styleUrls: ['./project-board.component.scss']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectBoardComponent implements OnInit {
 
-  sub$ = new Subject()
+  
+
   projects: Project[] = []
   constructor(
     private projectsService: ProjectsService
@@ -27,10 +27,7 @@ export class ProjectsComponent implements OnInit {
       .subscribe(res => {
         this.projects = res
         console.log(this.projects)
-
       })
   }
-
-
 
 }
