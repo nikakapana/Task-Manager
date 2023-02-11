@@ -14,7 +14,7 @@ export class AuthFacadeService extends AuthService{
   override login(payload: Login) {
     return super.login(payload).pipe(
       tap((response: AuthResponse) => {
-        const expiresInMilliseconds = 1000000;
+        const expiresInMilliseconds = 100000000;
 
         const cookieExpire = new Date(Date.now() + expiresInMilliseconds);
 
