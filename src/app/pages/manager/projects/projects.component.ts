@@ -27,7 +27,11 @@ export class ProjectsComponent implements OnInit {
       .subscribe(res => {
         this.projects = res
         console.log(this.projects)
+
       })
   }
 
+
+
 }
+

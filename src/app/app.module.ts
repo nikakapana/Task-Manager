@@ -10,12 +10,14 @@ import {RouterModule, RouterOutlet} from "@angular/router";
 import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 import {CookieService} from "ngx-cookie-service";
 import {ProjectInterceptor} from "./core/interceptors/project.interceptor";
+import { ProjectPageComponent } from './pages/manager/project-page/project-page.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProjectPageComponent
 
   ],
   imports: [
