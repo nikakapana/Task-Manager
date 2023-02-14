@@ -6,5 +6,9 @@ export interface User {
     userPermissions: any[];
     roles: any[];
     projects: any[];
-}
 
+
+    identityNumber: string;
+    mobileNumber: string;
+    isActive: boolean
+}
