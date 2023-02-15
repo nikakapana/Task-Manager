@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path:'project',
     component: ProjectPageComponent
+  },
+  {
+    path: 'setting',
+    loadChildren: () => import('../project-setting/project-setting.module').then(m => m.ProjectSettingModule)
   }
 ];
 

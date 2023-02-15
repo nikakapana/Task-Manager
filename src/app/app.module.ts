@@ -11,13 +11,15 @@ import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 import {CookieService} from "ngx-cookie-service";
 import {ProjectInterceptor} from "./core/interceptors/project.interceptor";
 import { ProjectPageComponent } from './pages/manager/project-page/project-page.component';
+import { ProjectSettingComponent } from './pages/manager/project-setting/project-setting.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectPageComponent
+    ProjectPageComponent,
+    ProjectSettingComponent
 
   ],
   imports: [
