@@ -11,6 +11,10 @@
         {{project.name}}
       </option>
       </select>
+      <ng-container *ngIf="currentProject">
+        <a class="newProject" routerLink="/projects/setting">Settings</a>
+      </ng-container>
+
       <a routerLink="/" class="nav-item" mat-raised-button (click)="signOut()">Sign Out</a>
 
     </ng-container>
