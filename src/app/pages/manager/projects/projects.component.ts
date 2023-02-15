@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProjectsService} from "../../../core/services/projects.service";
-import {Subject, takeUntil} from "rxjs";
+import {Subject} from "rxjs";
 import {Project} from "../../../core/interfaces";
 
 @Component({

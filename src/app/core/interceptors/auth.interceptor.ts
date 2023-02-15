@@ -46,7 +46,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
             case 403:
               this.handleError401(request, next);
-              break
+
           }
           const error = err.error.message || err.statusText
           return throwError(error)

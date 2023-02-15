@@ -4,7 +4,7 @@ export interface Project {
   abbreviation: string;
   description: string;
   color: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: any;
 }
