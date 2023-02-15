@@ -1,12 +1,31 @@
-<h1>projects</h1>
-
-<ul *ngFor="let item of projects">
-  <li>{{ item.id }}</li>
-  <li>{{ item.name }}</li>
-  <li>{{ item.abbreviation }}</li>
-  <li>{{ item.description }}</li>
-  <li>{{ item.color }}</li>
-
-</ul>
-
-
+<h1>Start a New Project</h1>
+<div class="new-project card" routerLink="create">
+  <i class="fa-sharp fa-solid fa-plus"></i>
+</div>
+<h1>Your Projects</h1>
+<div class="projects-container">
+  <div *ngFor="let item of projects" class="project-container">
+    <div class="card work">
+      <div class="img-section" style="--project-color: {{item.color}};">
+      </div>
+      <div class="card-desc">
+        <div class="card-header">
+          <div class="card-title">{{ item.abbreviation }}</div>
+          <!-- add delete/update buttons here-->
+          <div class="card-menu">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <div class="card-time">
+          <button routerLink="board/:{{ item.id }}">
+            {{ item.name }}
+          </button>
+        </div>
+        <p>Description:</p>
+        <p class="recent">{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
