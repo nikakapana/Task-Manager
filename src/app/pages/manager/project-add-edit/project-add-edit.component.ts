@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProjectsService} from "../../../core/services/projects.service";
 import {Router} from "@angular/router";
+import {switchMap, tap} from "rxjs";
 
 
 
@@ -43,10 +44,13 @@ export class ProjectAddEditComponent implements OnInit {
     else {
 
       this.projectsService.create(this.form.value)
-        .pipe()
+        .pipe(
+          tap((res) => this.projectsService.getOne(String(res.id))),
+            switchMap(() => this.projectsService.getMyProjects())
+        )
         .subscribe(res => {
-
-          this.router.navigate(['projects'])
+               res
+          this.router.navigate(['projects/setting'])
             .then(() => {
               this.form.reset()
             })
