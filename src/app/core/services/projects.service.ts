@@ -1,9 +1,10 @@
 import {Inject, Injectable} from '@angular/core';
 import {BaseService} from "./base.service";
 
-import {Observable, tap} from "rxjs";
+import {Observable, shareReplay, tap} from "rxjs";
 import {Project} from "../interfaces";
 import {ProjectFacade} from "../facades/project.facade";
+import {PaginationResponse} from "../interfaces/pagination-response";
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +15,34 @@ export class ProjectsService extends BaseService{
      super();
    }
 
+   getProjects(): Observable<PaginationResponse<Project>> {
+     return this.get<PaginationResponse<Project>>('project')
+   }
+
 getAllProjects() : Observable<Project[]> {
   return this.get<Project[]>('project/all')
 }
 
   getMyProjects() : Observable<Project[]> {
     return this.get<Project[]>('project/my')
+
+
   }
 
 
   getOne(id: string): Observable<Project> {
     return this.get<Project>(`project/${id}`)
+      .pipe(
+
+        tap(res => {
+
+          if(res) {
+            this.projectFacade.setProject(res)
+            shareReplay()
+          }
+        }),
+    shareReplay(),
+      )
   }
 
   create(project: Project): Observable<Project>{

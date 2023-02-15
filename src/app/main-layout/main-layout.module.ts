@@ -7,6 +7,7 @@ import {RouterModule, RouterOutlet} from "@angular/router";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -15,14 +16,16 @@ import {MatExpansionModule} from "@angular/material/expansion";
     HeaderComponent,
     SideBarComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        RouterOutlet,
-        MatToolbarModule,
-        MatButtonModule,
-        MatExpansionModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterOutlet,
+    MatToolbarModule,
+    MatButtonModule,
+    MatExpansionModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
   exports: [
     MainLayoutComponent
   ]

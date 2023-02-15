@@ -17,8 +17,9 @@ const routes: Routes = [
     path: 'edit/:id',
     component: ProjectAddEditComponent
   },
+
   {
-    path: 'board/:id',
+    path:'project',
     component: ProjectPageComponent
   }
 ];
