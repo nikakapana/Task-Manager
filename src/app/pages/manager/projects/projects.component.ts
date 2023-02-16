@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProjectsService} from "../../../core/services/projects.service";
-import {Subject} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {Project} from "../../../core/interfaces";
 
 @Component({
@@ -8,7 +8,7 @@ import {Project} from "../../../core/interfaces";
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
 
   sub$ = new Subject()
   projects: Project[] = []
@@ -23,12 +23,18 @@ export class ProjectsComponent implements OnInit {
 
   getAll() {
     this.projectsService.getMyProjects()
-      // .pipe(takeUntil(this.sub$))
+      .pipe(takeUntil(this.sub$))
       .subscribe(res => {
         this.projects = res
         console.log(this.projects)
 
       })
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.next(null)
+    this.sub$.complete()
+
   }
 
 

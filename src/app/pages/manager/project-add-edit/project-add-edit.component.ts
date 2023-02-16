@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProjectsService} from "../../../core/services/projects.service";
 import {Router} from "@angular/router";
-import {switchMap, tap} from "rxjs";
+import {Subject, switchMap, takeUntil, tap} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 
@@ -11,14 +12,15 @@ import {switchMap, tap} from "rxjs";
   templateUrl: './project-add-edit.component.html',
   styleUrls: ['./project-add-edit.component.scss']
 })
-export class ProjectAddEditComponent implements OnInit {
+export class ProjectAddEditComponent implements OnInit, OnDestroy {
 
 
-
+  sub$ = new Subject()
 
   constructor(
     private projectsService: ProjectsService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class ProjectAddEditComponent implements OnInit {
 
       this.projectsService.create(this.form.value)
         .pipe(
+          takeUntil(this.sub$),
           tap((res) => this.projectsService.getOne(String(res.id))),
             switchMap(() => this.projectsService.getMyProjects())
         )
@@ -54,8 +57,18 @@ export class ProjectAddEditComponent implements OnInit {
             .then(() => {
               this.form.reset()
             })
+this._snackBar.open('Project Created!', 'close',{
+ duration: 2000,
+})
+
         })
     }
+
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.next(null)
+    this.sub$.complete()
 
   }
 }
