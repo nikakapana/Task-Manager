@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthFacadeService} from "../../pages/auth/auth.facade.service";
 import {ProjectsService} from "../../core/services/projects.service";
-import {Observable, shareReplay} from "rxjs";
+import {Observable, shareReplay, Subject, takeUntil} from "rxjs";
 import {Project} from "../../core/interfaces";
 import {ProjectFacade} from "../../core/facades/project.facade";
 import {Router} from "@angular/router";
@@ -12,8 +12,10 @@ import {Router} from "@angular/router";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
+
+  sub$ = new Subject()
   projects = []
 
   projects$: Observable<Project[]> = this.projectsService.getMyProjects()
@@ -43,9 +45,16 @@ export class HeaderComponent implements OnInit {
     console.log($event)
     this.projectsService.getOne($event)
       .pipe(
+        takeUntil(this.sub$),
         shareReplay()
       )
       .subscribe(res => res)
     this.router.navigate(['/projects/project'])
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.next(null)
+    this.sub$.complete()
+
   }
 }
