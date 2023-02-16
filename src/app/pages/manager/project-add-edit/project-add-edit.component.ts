@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProjectsService} from "../../../core/services/projects.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Subject, switchMap, takeUntil, tap} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -20,10 +20,19 @@ export class ProjectAddEditComponent implements OnInit, OnDestroy {
   constructor(
     private projectsService: ProjectsService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.projectsService.getOne(params['id']).subscribe(res => {
+          this.form.patchValue(res)
+        })
+      }
+    })
 
     }
 
