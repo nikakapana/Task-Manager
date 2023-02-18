@@ -1,23 +1,38 @@
-
-
 <ng-container *ngIf="userIsAuthenticated;">
-<mat-accordion class="acordion">
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title class="side">
-        projects
-      </mat-panel-title>
+  <mat-accordion class="acordion">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="side">
+          projects
+        </mat-panel-title>
 
-    </mat-expansion-panel-header>
-    <a routerLink="projects/create">create new project +</a>
-    <br>
-    <br>
-    <hr>
-    <br>
-    <a routerLink="projects" >All projects</a>
-  </mat-expansion-panel>
+      </mat-expansion-panel-header>
+      <a routerLink="projects/create">create new project +</a>
+      <br>
+      <br>
+      <hr>
+      <br>
+      <a routerLink="projects">All projects</a>
+    </mat-expansion-panel>
 
 
-</mat-accordion>
+  </mat-accordion>
+
+  <div class="sidebar">
+    <ul>
+      <li>
+        <a routerLink="/projects/setting/info">Info</a>
+      </li>
+      <li>
+        <a routerLink="/projects/setting/boards">Boards</a>
+      </li>
+      <li>
+        <a routerLink="/projects/setting/issue-types">Issue types</a>
+      </li>
+      <li>
+        <a routerLink="/projects/setting/users">Users</a>
+      </li>
+    </ul>
+  </div>
 
 </ng-container>
