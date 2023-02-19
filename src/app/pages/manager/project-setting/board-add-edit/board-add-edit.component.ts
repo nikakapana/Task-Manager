@@ -33,5 +33,7 @@ export class BoardAddEditComponent implements OnInit {
       })
   }
 
-
+  close() {
+    history.back();
+  }
 }

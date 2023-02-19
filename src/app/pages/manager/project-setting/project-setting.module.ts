@@ -12,6 +12,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from '@angular/material/button';
+import { BoardComponent } from './board/board.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     ProjectBoardComponent,
     IssueTypesComponent,
     ProjectUsersComponent,
-    BoardAddEditComponent
+    BoardAddEditComponent,
+    BoardComponent
   ],
   imports: [
     CommonModule,
