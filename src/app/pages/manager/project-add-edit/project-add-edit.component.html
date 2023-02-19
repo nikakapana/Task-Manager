@@ -33,7 +33,15 @@
     </div>
 
   </div>
-  <button type="submit">Create Project</button>
+    <ng-container *ngIf="projectId else Create" >
+      <button type="submit">Update Project</button>
+
+    </ng-container>
+
+    <ng-template #Create>
+      <button type="submit">Create Project</button>
+    </ng-template>
+
   </div>
   <div>
     <img src="./assets/pexels-photo-3194519.jpeg" alt="">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProjectFacade} from "../../../../core/facades/project.facade";
 import {Project} from "../../../../core/interfaces";
 
@@ -18,6 +18,9 @@ export class ProjectInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
   }
+
+
 
 }

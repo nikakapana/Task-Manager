@@ -4,6 +4,7 @@ import {ProjectsService} from "../../../core/services/projects.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subject, switchMap, takeUntil, tap} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ProjectFacade} from "../../../core/facades/project.facade";
 
 
 
@@ -16,9 +17,10 @@ export class ProjectAddEditComponent implements OnInit, OnDestroy {
 
 
   sub$ = new Subject()
-
+projectId!: number
   constructor(
     private projectsService: ProjectsService,
+    private projectFacade : ProjectFacade,
     private router: Router,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute
@@ -28,6 +30,7 @@ export class ProjectAddEditComponent implements OnInit, OnDestroy {
 
     this.route.params.subscribe(params => {
       if (params['id']) {
+        this.projectId = params['id']
         this.projectsService.getOne(params['id']).subscribe(res => {
           this.form.patchValue(res)
         })
@@ -38,6 +41,7 @@ export class ProjectAddEditComponent implements OnInit, OnDestroy {
 
 
   form: FormGroup = new FormGroup({
+    id: new FormControl(''),
     name: new FormControl('', Validators.required),
       abbreviation: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
@@ -54,10 +58,39 @@ export class ProjectAddEditComponent implements OnInit, OnDestroy {
 
     else {
 
+      if (this.projectId)
+      {
+        this.projectsService.update(String(this.projectId),this.form.value)
+          .pipe(
+            takeUntil(this.sub$),
+            tap((res) => this.projectsService.getOne(String(res.id))
+
+
+            ),
+            switchMap(() => this.projectsService.getMyProjects()))
+              .subscribe(res => {
+
+                this.router.navigate(['projects/setting'])
+                  .then(() => {
+                    this.form.reset()
+                  })
+                this._snackBar.open('Project Updated!', 'close',{
+                  duration: 2000,
+                })
+
+              }
+          )
+
+      }
+
+      else {
       this.projectsService.create(this.form.value)
         .pipe(
           takeUntil(this.sub$),
-          tap((res) => this.projectsService.getOne(String(res.id))),
+          tap((res) => this.projectsService.getOne(String(res.id))
+
+          ),
+
             switchMap(() => this.projectsService.getMyProjects())
         )
         .subscribe(res => {
@@ -72,7 +105,7 @@ this._snackBar.open('Project Created!', 'close',{
 
         })
     }
-
+    }
   }
 
   ngOnDestroy(): void {
