@@ -1,5 +1,5 @@
 import {IssueTypeColumn} from "./issue-type-column";
-import {IssueTypeEnum} from "../enums/issue-type.enum";
+import {IssueTypeEnum} from "../enums";
 
 export interface IssueType {
   name: string;

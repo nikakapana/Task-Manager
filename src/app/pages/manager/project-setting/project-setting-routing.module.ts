@@ -6,6 +6,8 @@ import {ProjectBoardComponent} from "./project-board/project-board.component";
 import {IssueTypesComponent} from "./issue-types/issue-types.component";
 import {ProjectUsersComponent} from "./project-users/project-users.component";
 import {BoardAddEditComponent} from "./board-add-edit/board-add-edit.component";
+import * as path from "path";
+import {IssueTypeAddEditComponent} from "./issue-type-add-edit/issue-type-add-edit.component";
 
 const routes: Routes = [{
   path: '',
@@ -39,7 +41,20 @@ const routes: Routes = [{
     },
     {
       path: 'issue-types',
-      component: IssueTypesComponent
+      children: [
+        {
+          path: '',
+          component: IssueTypesComponent
+        },
+        {
+          path: 'add',
+          component: IssueTypeAddEditComponent
+        },
+        {
+          path: 'edit/:id',
+          component: IssueTypeAddEditComponent
+        }
+      ]
     },
     {
       path: 'users',
