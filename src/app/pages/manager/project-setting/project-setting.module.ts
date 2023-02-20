@@ -13,7 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { MatButtonModule } from '@angular/material/button';
 import { BoardComponent } from './board/board.component';
 
 
@@ -24,15 +23,13 @@ import { BoardComponent } from './board/board.component';
     IssueTypesComponent,
     ProjectUsersComponent,
     BoardAddEditComponent,
-    IssueTypeAddEditComponent
-    BoardAddEditComponent,
+    IssueTypeAddEditComponent,
     BoardComponent
   ],
   imports: [
     CommonModule,
     ProjectSettingRoutingModule,
-    MatButtonModule
-    ProjectSettingRoutingModule,
+    MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
