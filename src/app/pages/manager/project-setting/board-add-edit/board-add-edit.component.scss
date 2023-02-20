@@ -1,0 +1,60 @@
+.container {
+    width: 50%;
+    height: 700px;
+    position: absolute;
+    top: calc(50% - 400px);
+    left: calc(50% - 400px);
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-gap: 20px;
+
+    .board-form {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .example-form {
+            min-width: 150px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .example-full-width {
+            width: 100%;
+        }
+
+        form {
+            background-color: #3700B3;
+            border-radius: 2%;
+            height: 40%;
+
+            padding: 50px 10px;
+
+            button {
+                background-color: #7ED957;
+                margin-top: 20px;
+            }
+        }
+    }
+
+    .img {
+        background-image: url('../../../../../assets/create-board-img.png');
+        height: 700px;
+        width: auto;
+        position: relative;
+
+        i {
+            position: absolute;
+            left: 85%;
+            top: 2%;
+
+            font-size: 30px;
+            color: #DD3D4E;
+        }
+    }
+
+
+}

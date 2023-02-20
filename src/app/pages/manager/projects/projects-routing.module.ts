@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjectsComponent } from "./projects.component";
 import { ProjectAddEditComponent } from "../project-add-edit/project-add-edit.component";
 import { ProjectPageComponent } from '../project-page/project-page.component';
+
 
 const routes: Routes = [
   {
@@ -19,9 +20,10 @@ const routes: Routes = [
   },
 
   {
-    path:'project',
+    path: 'project',
     component: ProjectPageComponent
   },
+
   {
     path: 'setting',
     loadChildren: () => import('../project-setting/project-setting.module').then(m => m.ProjectSettingModule)

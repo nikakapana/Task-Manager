@@ -1,1 +1,11 @@
-<p>project-board works!</p>
+<div class="new-board" routerLink="add">
+    <div>
+        <i class="fa-sharp fa-solid fa-plus"></i>
+        <p>Add a New Board</p>
+    </div>
+</div>
+<div class="container" *ngIf="boards$ | async as boards">
+    <div class="card" *ngFor="let board of boards" routerLink=":id">
+        {{ board.name }}
+    </div>
+</div>
