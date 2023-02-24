@@ -12,57 +12,43 @@ import {PaginationResponse} from "../interfaces/pagination-response";
 export class ProjectsService extends BaseService{
 
 
-   constructor(private projectFacade: ProjectFacade) {
-     super();
-   }
 
-   getProjects(): Observable<PaginationResponse<Project>> {
-     return this.get<PaginationResponse<Project>>('project')
-   }
-
-getAllProjects() : Observable<Project[]> {
-  return this.get<Project[]>('project/all')
-}
-
-  getMyProjects() : Observable<Project[]> {
-    return this.get<Project[]>('project/my')
-
-
+  getProjects(): Observable<PaginationResponse<Project>> {
+    return this.get<PaginationResponse<Project>>('project');
   }
 
-
-  getOne(id: string): Observable<Project> {
-    return this.get<Project>(`project/${id}`)
-      .pipe(
-
-        tap(res => {
-
-          if(res) {
-            this.projectFacade.setProject(res)
-            shareReplay()
-          }
-        }),
-    shareReplay(),
-      )
+  getAllProjects(): Observable<Project[]> {
+    return this.get<Project[]>('project/all');
   }
 
-  create(project: Project): Observable<Project>{
-    return this.post<Project>('project', project)
-      .pipe(
-        tap(res => {
-          if(res) {
-this.projectFacade.setProject(res)
-          }
-        })
-      )
+  getMyProjects(): Observable<Project[]> {
+    return this.get<Project[]>('project/my');
   }
 
-  update(id: string, project: Project): Observable<Project> {
-    return this.put<Project>(`project/${id}`, project)
+  getProject(id: number): Observable<Project> {
+    return this.get<Project>(`project/${id}`);
   }
 
-    deleteItem(id: string): Observable<Project> {
-    return this.delete<Project>(`project/${id}`)
+  createProject(project: Project): Observable<Project> {
+    return this.post<Project>('project', project);
   }
 
+  updateProject(project: Project): Observable<Project> {
+    return this.put<Project>(`project/${project.id}`, project);
+  }
+
+  deleteProject(id: number): Observable<any> {
+    return this.delete(`project/${id}`);
+  }
+
+  getProjectUsers(): Observable<any> {
+    return this.get(`project/users`);
+  }
+
+  addProjectUser( data: {
+    projectId: number,
+    userIds: number[]
+  }): Observable<any> {
+    return this.post(`project/users`, data);
+  }
 }

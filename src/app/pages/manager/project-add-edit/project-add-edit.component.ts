@@ -17,36 +17,39 @@ export class ProjectAddEditComponent implements OnInit, OnDestroy {
 
 
   sub$ = new Subject()
-projectId!: number
+  projectId!: number
+
   constructor(
     private projectsService: ProjectsService,
-    private projectFacade : ProjectFacade,
+    private projectFacade: ProjectFacade,
     private router: Router,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
+
 
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
       if (params['id']) {
-        this.projectId = params['id']
-        this.projectsService.getOne(params['id']).subscribe(res => {
+        this.projectId = +params['id'];
+        this.projectsService.getProject(+params['id']).subscribe(res => {
           this.form.patchValue(res)
         })
       }
     })
 
-    }
+  }
 
 
   form: FormGroup = new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl('', Validators.required),
+      id: new FormControl(''),
+      name: new FormControl('', Validators.required),
       abbreviation: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    color: new FormControl('', Validators.required),
-  }
+      description: new FormControl('', Validators.required),
+      color: new FormControl('', Validators.required),
+    }
   )
 
   errorMessage?: string
@@ -58,59 +61,42 @@ projectId!: number
 
     else {
 
-      if (this.projectId)
-      {
-        this.projectsService.update(String(this.projectId),this.form.value)
+      if (this.projectId) {
+        this.projectsService.updateProject(this.form.value)
           .pipe(
             takeUntil(this.sub$),
-            tap((res) => this.projectsService.getOne(String(res.id))
-
-
-            ),
-            switchMap(() => this.projectsService.getMyProjects()))
-              .subscribe(res => {
-
-                this.router.navigate(['projects/setting'])
-                  .then(() => {
-                    this.form.reset()
-                  })
-                this._snackBar.open('Project Updated!', 'close',{
-                  duration: 2000,
-                })
-
-              }
+            tap((res) => this.projectFacade.setProject(res.id)),
+            switchMap(() => this.projectFacade.getMyProjects$())
           )
+          .subscribe(res => {
 
-      }
-
-      else {
-      this.projectsService.create(this.form.value)
-        .pipe(
-          takeUntil(this.sub$),
-          tap((res) => this.projectsService.getOne(String(res.id))
-
-          ),
-
-            switchMap(() => this.projectsService.getMyProjects())
-        )
-        .subscribe(res => {
-               res
-          this.router.navigate(['projects/setting'])
-            .then(() => {
-              this.form.reset()
+            this._snackBar.open('Project updated', 'Close', {
+              duration: 2000,
             })
-this._snackBar.open('Project Created!', 'close',{
- duration: 2000,
-})
 
-        })
-    }
+            this.router.navigate(['/projects/setting']).then();
+          });
+        return;
+      } else {
+        this.projectsService.createProject(this.form.value)
+          .pipe(
+            takeUntil(this.sub$),
+            tap((res) => this.projectFacade.setProject(res.id)),
+            switchMap(() => this.projectFacade.getMyProjects$())
+          )
+          .subscribe(res => {
+
+            this._snackBar.open('Project created', 'Close', {
+              duration: 2000,
+            })
+
+            this.router.navigate(['/projects/setting']).then();
+          });
+      }
     }
   }
-
   ngOnDestroy(): void {
     this.sub$.next(null)
     this.sub$.complete()
-
+    }
   }
-}
