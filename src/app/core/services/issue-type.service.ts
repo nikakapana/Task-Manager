@@ -18,7 +18,7 @@ import {Observable} from "rxjs";
     return this.post<IssueType>('issue-type', data);
   }
 
-  updateIssueType(data: any): Observable<IssueType> {
+  updateIssueType(data: IssueType): Observable<IssueType> {
     return this.put<IssueType>(`issue-type/${data.id}`, data);
   }
 

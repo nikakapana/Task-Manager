@@ -17,7 +17,7 @@ export class IssueTypeAddEditComponent implements OnInit {
     icon: new FormControl(null, Validators.required),
     color: new FormControl(1, Validators.required),
     type: new FormControl(null, Validators.required),
-    issueTypeColumns: new FormArray([], Validators.required),
+    issueTypeColumns: new FormArray([]),
   })
   issueTypes = Object.values(IssueTypeEnum);
 
@@ -37,12 +37,13 @@ export class IssueTypeAddEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.issueTypeId = +params['id'];
-        this.getBoard()
+        this.getIssueType()
+        console.log(this.issueTypeId)
       }
     })
   }
 
-  getBoard() {
+  getIssueType() {
     this.issueTypeService.getIssueType(this.issueTypeId).subscribe(res => {
       this.form.patchValue(res)
       res.issueTypeColumns.forEach(column => {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {of, Subject, switchMap, takeUntil} from "rxjs";
-import {IssueType} from "../../../../core/interfaces";
 import {IssueTypeService} from "../../../../core/services/issue-type.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ConfirmationPopUpComponent} from "../../../../shared/contirmation-pop-up/confirmation-pop-up.component";
 
 @Component({
   selector: 'app-issue-types',
@@ -11,13 +12,13 @@ import {IssueTypeService} from "../../../../core/services/issue-type.service";
 export class IssueTypesComponent implements OnInit {
   displayedColumns = ['id', 'name', 'createdAt', 'actions'];
 
-
+  dataSource: any[] = []
 
   sub$ = new Subject();
 
   constructor(
     private issueTypeService: IssueTypeService,
-
+    public dialog: MatDialog,
   ) {
 
   }
@@ -29,8 +30,10 @@ export class IssueTypesComponent implements OnInit {
 
   getIssueTypes() {
     this.issueTypeService.getIssueTypes()
-
-
+      .pipe(takeUntil(this.sub$))
+      .subscribe(IssueType => {
+        this.dataSource = IssueType;
+      });
   }
 
 
@@ -38,9 +41,25 @@ export class IssueTypesComponent implements OnInit {
   ngOnDestroy(): void {
     this.sub$.next(null);
     this.sub$.complete();
+  }
 
+  deleteIssueType(id: number) {
+    const dialogRef = this.dialog.open(ConfirmationPopUpComponent);
 
-
-
+    dialogRef.afterClosed()
+      .pipe(
+        takeUntil(this.sub$),
+        switchMap((result) => {
+          if (result) {
+            return this.issueTypeService.deleteIssueType(id);
+          }
+          return of(null);
+        })
+      )
+      .subscribe(result => {
+        if (result) {
+          this.getIssueTypes();
+        }
+      });
   }
 }

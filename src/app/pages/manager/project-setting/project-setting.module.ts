@@ -14,6 +14,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { BoardComponent } from './board/board.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { BoardComponent } from './board/board.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatDialogModule
   ]
 })
 export class ProjectSettingModule { }
