@@ -16,6 +16,7 @@ import { MatInputModule } from "@angular/material/input";
 import { BoardComponent } from './board/board.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from "@angular/material/dialog";
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatTabsModule,
     MatSelectModule,
+    MatDialogModule
 
   ]
 })
