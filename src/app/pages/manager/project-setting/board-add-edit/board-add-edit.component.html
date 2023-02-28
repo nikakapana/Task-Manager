@@ -1,9 +1,10 @@
 <div id="overlay"></div>
 <div class="container">
     <div class="board-form">
-        <mat-tab-group mat-align-tabs="center">
-            <mat-tab label="Create Board">
-                <form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
+
+        <form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab label="Create a Board">
                     <mat-form-field class="example-full-width">
                         <mat-label>Name</mat-label>
                         <input type="text" matInput formControlName="name">
@@ -22,13 +23,54 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <button type="submit" mat-raised-button color="primary">Create</button>
-                </form>
-            </mat-tab>
-            <mat-tab label="Create Columns">
+                    <button mat-raised-button color="primary" (click)="addColumn()">Add Column</button>
+                    <div>
 
-            </mat-tab>
-        </mat-tab-group>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Add a Column">
+                    <div formArrayName="columns">
+                        <div *ngFor="let column of columnsFormArray.controls; let i = index" class="item">
+                            <div [formGroupName]="i">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Name</mat-label>
+                                    <input type="text" matInput formControlName="name">
+                                    <mat-error *ngIf="form.controls['name'].hasError('required')">
+                                        Name is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput placeholder="Ex. This board is for..." maxlength="256" #message
+                                        formControlName="description"></textarea>
+                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                                    <mat-error *ngIf="form.controls['description'].hasError('required')" align="start">
+                                        Description is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Task Status</mat-label>
+                                    <mat-select formControlName="taskStatus">
+                                        <mat-option *ngFor="let status of taskStatuses" [value]="status">
+                                            {{status}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <button mat-raised-button color="primary" (click)="addColumn()">Add Column</button>
+                        <button mat-raised-button color="primary" type="submit">Create</button>
+                    </div>
+
+                </mat-tab>
+            </mat-tab-group>
+
+        </form>
+
+
         <!--<form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
             <mat-form-field class="example-full-width">
                 <mat-label>Name</mat-label>
