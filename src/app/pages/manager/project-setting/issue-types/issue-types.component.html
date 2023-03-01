@@ -1,1 +1,26 @@
-<p>issue-types works!</p>
+<button mat-raised-button color="primary" [routerLink]="['/projects/setting/issue-types/add']">Add Issue Type</button>
+
+
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let element of dataSource">
+      <td>{{element.id}}</td>
+      <td>{{element.name}}</td>
+      <td>{{element.createdAt}}</td>
+      <td>
+        <button class="button-primary" [routerLink]="['/projects/setting/issue-types/edit', element.id]">Edit</button>
+        <button class="button-warn" (click)="deleteIssueType(element.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

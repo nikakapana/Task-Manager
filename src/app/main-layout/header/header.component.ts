@@ -18,9 +18,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   sub$ = new Subject()
   projects = []
 
-  projects$: Observable<Project[]> = this.projectsService.getMyProjects()
-  currentProject?: Project = this.projectFacade.getProject()
 
+  currentProject?: Project = this.projectFacade.getProject()
+  projects$ = this.projectFacade.myProjects$;
   constructor(
     private authFacadeService: AuthFacadeService,
     private projectsService: ProjectsService,
@@ -28,7 +28,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router
   ) { }
 
+  get project(): Project {
+    return this.projectFacade.getProject()
+  }
+
   ngOnInit(): void {
+    this.getMyProjects();
 
   }
 
@@ -36,20 +41,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   get userIsAuthenticated() {
     return this.authFacadeService.token
   }
+  getMyProjects() {
+    this.projectFacade.getMyProjects$().subscribe();
+  }
 
   signOut() {
     this.authFacadeService.signOut()
   }
 
-  selectProject($event: string) {
-    console.log($event)
-    this.projectsService.getOne($event)
-      .pipe(
-        takeUntil(this.sub$),
-        shareReplay()
-      )
-      .subscribe(res => res)
-    this.router.navigate(['/projects/project'])
+  selectProject(projectId: any) {
+    console.log(projectId)
+    this.projectFacade.setProject(projectId)
+
   }
 
   ngOnDestroy(): void {
