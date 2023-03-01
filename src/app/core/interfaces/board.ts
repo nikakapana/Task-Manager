@@ -1,3 +1,4 @@
+import { TaskStatus } from "../enums/task-status.enum";
 import { Project } from "./project";
 import { Tasks } from "./task";
 
@@ -20,7 +21,7 @@ export interface Column {
     name: string;
     description: string;
     position: number;
-    taskStatus: TaskState;
+    taskStatus: TaskStatus;
     boardId: number;
     board: string;
     tasks: Tasks[];
