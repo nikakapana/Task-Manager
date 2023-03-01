@@ -5,7 +5,7 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
 import { ProjectAddEditComponent } from "../project-add-edit/project-add-edit.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatLegacySnackBarModule as MatSnackBarModule} from "@angular/material/legacy-snack-bar";
 
 
 @NgModule({
