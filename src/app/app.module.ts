@@ -12,6 +12,10 @@ import {CookieService} from "ngx-cookie-service";
 import {ProjectInterceptor} from "./core/interceptors/project.interceptor";
 import { ProjectPageComponent } from './pages/manager/project-page/project-page.component';
 import { ProjectSettingComponent } from './pages/manager/project-setting/project-setting.component';
+import { ProjectEpicsComponent } from './pages/manager/project-epics/project-epics.component';
+import { EpicAddEditComponent } from './pages/manager/epic-add-edit/epic-add-edit.component';
+import {MatButtonModule} from "@angular/material/button";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -19,7 +23,9 @@ import { ProjectSettingComponent } from './pages/manager/project-setting/project
   declarations: [
     AppComponent,
     ProjectPageComponent,
-    ProjectSettingComponent
+    ProjectSettingComponent,
+    ProjectEpicsComponent,
+    EpicAddEditComponent
 
   ],
   imports: [
@@ -29,7 +35,9 @@ import { ProjectSettingComponent } from './pages/manager/project-setting/project
     HttpClientModule,
     BrowserAnimationsModule,
     RouterModule,
-    RouterOutlet
+    RouterOutlet,
+    MatButtonModule,
+    ReactiveFormsModule
 
   ],
   providers: [

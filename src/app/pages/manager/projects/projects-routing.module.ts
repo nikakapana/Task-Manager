@@ -1,8 +1,8 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjectsComponent } from "./projects.component";
-import { ProjectAddEditComponent } from "../project-add-edit/project-add-edit.component";
 import { ProjectPageComponent } from '../project-page/project-page.component';
+import {EpicAddEditComponent} from "../epic-add-edit/epic-add-edit.component";
 
 
 const routes: Routes = [
@@ -12,11 +12,11 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: ProjectAddEditComponent
+    component: EpicAddEditComponent
   },
   {
     path: 'edit/:id',
-    component: ProjectAddEditComponent
+    component: EpicAddEditComponent
   },
 
   {

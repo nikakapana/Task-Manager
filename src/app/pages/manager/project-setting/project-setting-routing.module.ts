@@ -8,6 +8,8 @@ import {ProjectUsersComponent} from "./project-users/project-users.component";
 import {BoardAddEditComponent} from "./board-add-edit/board-add-edit.component";
 import {IssueTypeAddEditComponent} from "./issue-type-add-edit/issue-type-add-edit.component";
 import {BoardComponent} from "./board/board.component";
+import {ProjectEpicsComponent} from "../project-epics/project-epics.component";
+import {EpicAddEditComponent} from "../epic-add-edit/epic-add-edit.component";
 
 const routes: Routes = [{
   path: '',
@@ -57,6 +59,24 @@ const routes: Routes = [{
         {
           path: 'edit/:id',
           component: IssueTypeAddEditComponent
+        }
+      ]
+    }
+    ,
+    {
+      path: 'epics',
+      children: [
+        {
+          path: '',
+          component: ProjectEpicsComponent
+        },
+        {
+          path: 'add',
+          component: EpicAddEditComponent
+        },
+        {
+          path: 'edit/:id',
+          component: EpicAddEditComponent
         }
       ]
     },
