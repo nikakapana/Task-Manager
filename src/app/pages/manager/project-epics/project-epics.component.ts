@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {of, Subject, switchMap, takeUntil} from "rxjs";
-import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
-import {ConfirmationPopUpComponent} from "../../../shared/contirmation-pop-up/confirmation-pop-up.component";
 import {EpicService} from "../../../core/services/epic.service";
+import {ConfirmationPopUpComponent} from "../../../shared/contirmation-pop-up/confirmation-pop-up.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-project-epics',
   templateUrl: './project-epics.component.html',
   styleUrls: ['./project-epics.component.scss']
 })
-export class ProjectEpicsComponent {
+export class ProjectEpicsComponent implements OnInit{
 
 
   displayedColumns = ['id', 'name', 'createdAt', 'actions'];

@@ -57,3 +57,9 @@
 .button-warn:hover {
   background-color: #c82333;
 }
+
+.buttons {
+  display: flex;
+
+  gap: 8px;
+}

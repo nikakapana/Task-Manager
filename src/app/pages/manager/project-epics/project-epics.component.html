@@ -17,8 +17,10 @@
       <td>{{element.name}}</td>
       <td>{{element.createdAt}}</td>
       <td>
-        <button class="button-primary" [routerLink]="['/projects/setting/epics/edit', element.id]">Edit</button>
-        <button class="button-warn" (click)="deleteEpic(element.id)">Delete</button>
+        <div class="buttons">
+          <button class="button-primary" [routerLink]="['/projects/setting/issue-types/edit', element.id]">Edit</button>
+          <button class="button-warn" (click)="deleteEpic(element.id)">Delete</button>
+        </div>
       </td>
     </tr>
     </tbody>
