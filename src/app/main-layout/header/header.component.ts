@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthFacadeService} from "../../pages/auth/auth.facade.service";
 import {ProjectsService} from "../../core/services/projects.service";
-import {Observable, shareReplay, Subject, takeUntil} from "rxjs";
+import {Subject} from "rxjs";
 import {Project} from "../../core/interfaces";
 import {ProjectFacade} from "../../core/facades/project.facade";
 import {Router} from "@angular/router";
