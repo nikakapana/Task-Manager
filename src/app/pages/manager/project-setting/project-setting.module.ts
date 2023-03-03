@@ -7,16 +7,16 @@ import { ProjectBoardComponent } from './project-board/project-board.component';
 import { IssueTypesComponent } from './issue-types/issue-types.component';
 import { ProjectUsersComponent } from './project-users/project-users.component';
 import { BoardAddEditComponent } from './board-add-edit/board-add-edit.component';
-import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
 import { IssueTypeAddEditComponent } from './issue-type-add-edit/issue-type-add-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyCardModule as MatCardModule } from "@angular/material/legacy-card";
-import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
-import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 import { BoardComponent } from './board/board.component';
-import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
-import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
-import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
+import {MatInputModule} from "@angular/material/input";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatSelectModule} from "@angular/material/select";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({

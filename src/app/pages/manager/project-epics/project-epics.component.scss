@@ -23,7 +23,11 @@
 .table tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+.buttons {
+  display: flex;
 
+  gap: 8px;
+}
 .button-primary {
   display: inline-block;
   padding: 10px 20px;
@@ -56,10 +60,4 @@
 
 .button-warn:hover {
   background-color: #c82333;
-}
-
-.buttons {
-  display: flex;
-
-  gap: 8px;
 }

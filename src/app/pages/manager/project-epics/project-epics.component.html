@@ -1,4 +1,4 @@
-<button mat-raised-button color="primary" [routerLink]="['/projects/setting/issue-types/add']">Add Issue Type</button>
+<button mat-raised-button color="primary" [routerLink]="['/projects/setting/epics/add']">Add Epic</button>
 
 
 <div class="container">
@@ -18,8 +18,8 @@
       <td>{{element.createdAt}}</td>
       <td>
         <div class="buttons">
-        <button class="button-primary" [routerLink]="['/projects/setting/issue-types/edit', element.id]">Edit</button>
-        <button class="button-warn" (click)="deleteIssueType(element.id)">Delete</button>
+          <button class="button-primary" [routerLink]="['/projects/setting/issue-types/edit', element.id]">Edit</button>
+          <button class="button-warn" (click)="deleteEpic(element.id)">Delete</button>
         </div>
       </td>
     </tr>

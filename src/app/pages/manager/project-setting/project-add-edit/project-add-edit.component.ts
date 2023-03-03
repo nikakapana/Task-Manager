@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
-import {ProjectsService} from "../../../core/services/projects.service";
+import {ProjectsService} from "../../../../core/services/projects.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subject, switchMap, takeUntil, tap} from "rxjs";
 import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
-import {ProjectFacade} from "../../../core/facades/project.facade";
+import {ProjectFacade} from "../../../../core/facades/project.facade";
 
 
 

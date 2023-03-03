@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IssueTypeEnum} from "../../../../core/enums";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {IssueTypeService} from "../../../../core/services/issue-type.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-issue-type-add-edit',
   templateUrl: './issue-type-add-edit.component.html',
   styleUrls: ['./issue-type-add-edit.component.scss']
 })
-export class IssueTypeAddEditComponent implements OnInit {
+export class IssueTypeAddEditComponent implements OnInit, OnDestroy {
   form: FormGroup = new FormGroup({
     id: new FormControl(null),
     name: new FormControl(null, Validators.required),
@@ -33,6 +34,8 @@ export class IssueTypeAddEditComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  sub$ = new Subject()
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       if (params['id']) {
@@ -44,7 +47,9 @@ export class IssueTypeAddEditComponent implements OnInit {
   }
 
   getIssueType() {
-    this.issueTypeService.getIssueType(this.issueTypeId).subscribe(res => {
+    this.issueTypeService.getIssueType(this.issueTypeId)
+      .pipe(takeUntil(this.sub$))
+      .subscribe(res => {
       this.form.patchValue(res)
       res.issueTypeColumns.forEach(column => {
         this.columnsFormArray.push(new FormGroup({
@@ -73,16 +78,24 @@ export class IssueTypeAddEditComponent implements OnInit {
     }
     if (this.issueTypeId) {
       this.issueTypeService.updateIssueType(this.form.value)
+        .pipe(takeUntil(this.sub$))
         .subscribe( res => {
           this.router.navigate(['/projects/setting/issue-types']).then()
         })
     } else {
       this.issueTypeService.createIssueType(this.form.value)
+        .pipe(takeUntil(this.sub$))
         .subscribe( res => {
           this.router.navigate(['/projects/setting/issue-types']).then()
         })
     }
 
 
+  }
+
+  ngOnDestroy(): void {
+
+    this.sub$.next(null)
+    this.sub$.complete()
   }
 }
