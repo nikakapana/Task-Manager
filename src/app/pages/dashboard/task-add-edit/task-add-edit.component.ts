@@ -17,7 +17,7 @@ import {TaskPriority} from "../../../core/enums";
   templateUrl: './task-add-edit.component.html',
   styleUrls: ['./task-add-edit.component.scss']
 })
-export class TaskAddEditComponent implements  OnDestroy{
+export class TaskAddEditComponent {
 
 
   form: FormGroup = new FormGroup({
@@ -102,9 +102,9 @@ export class TaskAddEditComponent implements  OnDestroy{
   //   }
   // }
 
-  ngOnDestroy(): void {
-    this.sub$.next(null);
-    this.sub$.complete();
-  }
+  // ngOnDestroy(): void {
+  //   this.sub$.next(null);
+  //   this.sub$.complete();
+  // }
 
 }

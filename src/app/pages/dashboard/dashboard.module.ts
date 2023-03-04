@@ -6,7 +6,7 @@ import { BoardComponent } from './board/board.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { TaskAddEditComponent } from './task-add-edit/task-add-edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -17,10 +17,10 @@ import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
   ],
   imports: [
     CommonModule,
+    MatDialogModule,
     DashboardRoutingModule,
     DragDropModule,
     ReactiveFormsModule,
-    MatDialogModule,
 
 
 
