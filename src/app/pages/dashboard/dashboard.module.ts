@@ -1,19 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { BoardComponent } from './board/board.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import { TaskAddEditComponent } from './task-add-edit/task-add-edit.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    BoardComponent
+    BoardComponent,
+    TaskAddEditComponent
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    DragDropModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+
+
+
   ]
 })
 export class DashboardModule { }
