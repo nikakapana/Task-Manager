@@ -16,4 +16,9 @@ export class BoardService extends BaseService {
     return this.post<Board>('board', data);
   }
 
+  getBoard(id: number): Observable<Board> {
+    console.log(this.get<Board>(`board/${id}`))
+    return this.get<Board>(`board/${id}`);
+  }
+
 }

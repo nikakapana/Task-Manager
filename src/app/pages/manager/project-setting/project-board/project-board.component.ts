@@ -18,8 +18,6 @@ export class ProjectBoardComponent {
   ) {
   }
 
-  addBoard() {
-    console.log('add board');
-  }
+
 
 }

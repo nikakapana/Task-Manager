@@ -1,7 +1,6 @@
 <div id="overlay"></div>
 <div class="container">
     <div class="board-form">
-
         <form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
             <mat-tab-group mat-align-tabs="center">
                 <mat-tab label="Create a Board">
@@ -50,7 +49,7 @@
                                     </mat-error>
                                 </mat-form-field>
 
-                                <mat-form-field>
+                                <mat-form-field class="select">
                                     <mat-label>Task Status</mat-label>
                                     <mat-select formControlName="taskStatus">
                                         <mat-option *ngFor="let status of taskStatuses" [value]="status">

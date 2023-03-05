@@ -54,10 +54,12 @@ export class BoardAddEditComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.boardService.createBoard(this.form.value))
     this.boardService.createBoard(this.form.value)
       .subscribe(res => {
         this.router.navigate(['/projects/setting/boards']).then()
       })
+
   }
 
   close() {

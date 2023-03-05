@@ -4,8 +4,9 @@
         <p>Add a New Board</p>
     </div>
 </div>
+<h2>Boards</h2>
 <div class="container" *ngIf="boards$ | async as boards">
-    <div class="card" *ngFor="let board of boards" routerLink=":id">
-        {{ board.name }}
+    <div class="card" *ngFor="let board of boards" [routerLink]="[board.id]">
+        <p> {{ board.name }} </p>
     </div>
 </div>
