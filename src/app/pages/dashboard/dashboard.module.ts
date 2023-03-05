@@ -7,6 +7,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import { TaskAddEditComponent } from './task-add-edit/task-add-edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     DashboardRoutingModule,
     DragDropModule,
     ReactiveFormsModule,
+    RouterModule
 
 
 

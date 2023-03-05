@@ -1,29 +1,30 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {BaseService} from "./base.service";
+import {Tasks} from "../interfaces/task";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService extends BaseService{
 
-  getTask(id: number): Observable<Task> {
-    return this.get<Task>(`task/${id}`)
+  getTask(id: number): Observable<Tasks> {
+    return this.get<Tasks>(`task/${id}`)
   }
 
-  getTasks(params = {}): Observable<Task[]> {
-    return this.get<Task[]>(`task`, params )
+  getTasks(params = {}): Observable<Tasks[]> {
+    return this.get<Tasks[]>(`task`, params )
   }
 
-  createTask(data: any): Observable<Task> {
-    return this.post<Task>(`task`, data)
+  createTask(data: any): Observable<Tasks> {
+    return this.post<Tasks>(`task`, data)
   }
 
-  updateTask(id: number, data: any): Observable<Task> {
-    return this.put<Task>(`task/${id}`, data)
+  updateTask(id: number, data: any): Observable<Tasks> {
+    return this.put<Tasks>(`task/${id}`, data)
   }
 
   deleteTask(id: number): Observable<any> {
-    return this.delete<Task>(`task/${id}`)
+    return this.delete<Tasks>(`task/${id}`)
   }
 }

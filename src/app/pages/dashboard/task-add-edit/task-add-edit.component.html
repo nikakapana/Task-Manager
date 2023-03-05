@@ -1,46 +1,47 @@
-<!--<div class="container">-->
-<!--  <h1 class="dialog-title">Create Task</h1>-->
-<!--  <div class="dialog-content">-->
-<!--    <div class="content">-->
-<!--      <div class="content-left">-->
-<!--        <input type="text" placeholder="Task Name" class="form-input" formControlName="name">-->
-<!--        <textarea rows="10" placeholder="Description" class="form-input" formControlName="description"></textarea>-->
-<!--      </div>-->
-<!--      <div class="content-right">-->
-<!--        <select class="form-select" formControlName="issueTypeId">-->
-<!--          <option disabled selected hidden>Task Type</option>-->
-<!--          <option *ngFor="let type of types$ | async" [value]="type.id">{{type.name}}</option>-->
-<!--        </select>-->
-<!--        <select class="form-select" formControlName="epicId">-->
-<!--          <option disabled selected hidden>Epic</option>-->
-<!--          <option *ngFor="let epic of epics$ | async" [value]="epic.id">{{epic.name}}</option>-->
-<!--        </select>-->
-<!--        <select class="form-select" formControlName="priority">-->
-<!--          <option disabled selected hidden>Task Priority</option>-->
-<!--&lt;!&ndash;          <option *ngFor="let priority of priority" [value]="priority">{{priority}}</option>&ndash;&gt;-->
-<!--        </select>-->
-<!--        <select class="form-select" formControlName="assigneeId">-->
-<!--          <option disabled selected hidden>Assign User</option>-->
-<!--          <option *ngFor="let user of users$ |async" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>-->
-<!--        </select>-->
-<!--        <select class="form-select" formControlName="reporterId">-->
-<!--          <option disabled selected hidden>Reporter User</option>-->
-<!--          <option *ngFor="let user of users$ |async" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>-->
-<!--        </select>-->
+<div class="container" [formGroup]="form">
+  <h1 class="dialog-title">Create Task</h1>
+  <div class="dialog-content">
+    <div class="content">
+      <div class="content-left">
+        <input type="text" placeholder="Task Name" class="form-input" formControlName="name">
+        <textarea rows="10" placeholder="Description" class="form-input" formControlName="description"></textarea>
+      </div>
+      <div class="content-right">
+        <select class="form-select" formControlName="issueTypeId">
+          <label for="task"  >Task Type</label>
+          <option id="task" *ngFor="let type of types$ | async" [value]="type.id">{{type.name}}</option>
 
-<!--        <hr class="divider">-->
+        </select>
+        <select class="form-select" formControlName="epicId">
+          <option disabled selected>Epic</option>
+          <option *ngFor="let epic of epics$ | async" [value]="epic.id">{{epic.name}}</option>
+        </select>
+        <select class="form-select" formControlName="priority">
+          <option disabled selected hidden>Task Priority</option>
+          <option *ngFor="let priority of priority" [value]="priority">{{priority}}</option>
+        </select>
+        <select class="form-select" formControlName="assigneeId">
+          <option disabled selected hidden>Assign User</option>
+          <option *ngFor="let user of users$ |async" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>
+        </select>
+        <select class="form-select" formControlName="reporterId">
+          <option disabled selected hidden>Reporter User</option>
+          <option *ngFor="let user of users$ |async" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>
+        </select>
 
-<!--&lt;!&ndash;        <div formArrayName="taskProperty">&ndash;&gt;-->
-<!--&lt;!&ndash;          <div *ngFor="let property of taskProperty.controls; let i = index" [formGroupName]="i">&ndash;&gt;-->
-<!--&lt;!&ndash;            <input type="text" [placeholder]="property.get('name')?.value" class="form-input" formControlName="value" [required]="form.get('isRequired')?.value">&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="dialog-actions">-->
-<!--&lt;!&ndash;    <button class="cancel-button" (click)="dialogRef.close()">Cancel</button>&ndash;&gt;-->
-<!--    <button class="save-button" (click)="save()">Create</button>-->
-<!--  </div>-->
-<!--</div>-->
+        <hr class="divider">
+
+        <div formArrayName="taskProperty">
+          <div *ngFor="let property of taskProperty.controls; let i = index" [formGroupName]="i">
+            <input type="text" [placeholder]="property.get('name')?.value" class="form-input" formControlName="value" [required]="form.get('isRequired')?.value">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dialog-actions">
+    <button class="cancel-button" (click)="dialogRef.close()">Cancel</button>
+    <button class="save-button" (click)="save()">Create</button>
+  </div>
+</div>
 

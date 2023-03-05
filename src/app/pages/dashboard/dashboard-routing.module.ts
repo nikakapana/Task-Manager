@@ -8,16 +8,16 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-  },
-  {
-    path: 'addTask',
-    component: TaskAddEditComponent
-  },
 
-  {
-    path: ':id',
-    component: BoardComponent
   },
+      {
+        path: ':id',
+        component: BoardComponent
+      }
+
+
+
+
 
 
 ];

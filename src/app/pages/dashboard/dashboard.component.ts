@@ -8,6 +8,7 @@ import {BoardService} from "../../core/services/board.service";
 })
 export class DashboardComponent {
   boards$ = this.boardService.getBoards();
+  boardId: number | null = null;
   constructor(
     private boardService: BoardService
   ) {}
