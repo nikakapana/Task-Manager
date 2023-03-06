@@ -18,6 +18,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
 import { MatTableModule } from '@angular/material/table';
+import { UserModule } from '../../user/user.module';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { MatTableModule } from '@angular/material/table';
     MatDialogModule,
 
     MatTableModule,
+    UserModule
 
   ]
 })

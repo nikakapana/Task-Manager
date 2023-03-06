@@ -5,6 +5,9 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserAddEditComponent } from './components/user-add-edit/user-add-edit.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,7 +21,10 @@ import { MatInputModule } from '@angular/material/input';
     UserRoutingModule,
 
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule,
+    ReactiveFormsModule
 
   ],
   exports: [

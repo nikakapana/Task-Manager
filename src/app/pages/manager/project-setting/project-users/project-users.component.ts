@@ -82,23 +82,33 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
   onSubmit() {
     const userIds = [...this.projectUserIds, this.userForm.value.userId];
 
-    this.projectsService.addProjectUser({
+    this.createUsers(userIds).subscribe(() => {
+      this.getProjectUsers();
+      this.chooseUser();
+    })
+
+
+  }
+
+  createUsers(userIds: number[]) {
+    return this.projectsService.addProjectUser({
       projectId: this.projectId,
       userIds
     })
     .pipe(takeUntil(this.sub$))
-    .subscribe(() => {
-      this.getProjectUsers();
-      this.chooseUser();
-    })
+    
   }
 
   addNewUser(){
     const dialog = this.dialog.open(UserAddEditComponent);
 
-    dialog.afterClosed().pipe().subscribe((result: User) => {
+    dialog.afterClosed().pipe().subscribe((result: User) => {      
       if (result) {
-        this.getProjectUsers()
+        const userIds = [...this.projectUserIds, result.id]
+        this.createUsers(userIds).subscribe(() => {
+          this.getProjectUsers();
+          this.chooseUserActive = false;
+        })
       }
     })
   }

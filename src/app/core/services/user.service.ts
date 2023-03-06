@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../interfaces';
 import { BaseService } from './base.service';
 
 @Injectable({
@@ -21,7 +22,7 @@ export class UserService extends BaseService {
     return this.get('users/all')
   }
 
-  getUser(id: number) {
+  getUser(id: number): Observable<User> {
     return this.get(`users/${id}`)
   }
 
