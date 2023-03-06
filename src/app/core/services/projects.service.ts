@@ -47,8 +47,9 @@ export class ProjectsService extends BaseService{
   // }
 
   getProjectUsers(id: number): Observable<any>{
-    return this.get(`project/${id}/users`)
+    return this.get(`project/users`)
   }
+
 
   addProjectUser( data: {
     projectId: number,

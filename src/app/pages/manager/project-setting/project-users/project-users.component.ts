@@ -1,9 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { ProjectsService } from 'src/app/core/services/projects.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProjectFacade } from 'src/app/core/facades/project.facade';
 import { Board } from 'src/app/core/interfaces/board';
+import { User } from 'src/app/core/interfaces';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/core/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UserAddEditComponent } from 'src/app/pages/user/components/user-add-edit/user-add-edit.component';
 
 @Component({
   selector: 'app-project-users',
@@ -12,19 +17,32 @@ import { Board } from 'src/app/core/interfaces/board';
 })
 export class ProjectUsersComponent implements OnInit, OnDestroy {
 
-  displayedColums = ['id', 'firstName', 'lastName', 'createdAt', 'actions'];
+  displayedColumns = ['id', 'firstName', 'lastName', 'createdAt', 'actions'];
 
   dataSource = new MatTableDataSource<Board>();
 
   sub$ = new Subject();
 
+  projectUserIds: number[] =[];
+
+  chooseUserActive = false;
+
+  userForm: FormGroup = new FormGroup({
+    userId: new FormControl(null, [Validators.required])
+  })
+
+  users$: Observable<User[]> = this.userService.getAllUsers()
+
   get projectId() {
     return this.projectFacade.getProject().id;
   }
 
+
   constructor(
     private projectsService: ProjectsService,
-    private projectFacade: ProjectFacade
+    private projectFacade: ProjectFacade,
+    private userService: UserService,
+    private dialog: MatDialog
   ) { }
 
 
@@ -34,9 +52,9 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
   }
 
   getProjectUsers() {
-    this.projectsService.getProjectUsers(this.projectId).pipe(takeUntil(this.sub$)).subscribe(
-      boards => {
-        this.dataSource.data = boards
+    this.projectsService.getProjectUsers(this.projectId).pipe(takeUntil(this.sub$)).subscribe(users => {
+        this.projectUserIds = users.map((user: User) => user.id)
+        this.dataSource.data = users
       }
     )
   }
@@ -45,6 +63,44 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub$.next(null);
     this.sub$.complete();
+  }
+
+  delete(id: number) {
+    const userIds = this.projectUserIds.filter((userId: number) => userId !== id);
+    this.projectsService.addProjectUser({
+      projectId: this.projectId,
+      userIds
+    }).pipe(takeUntil(this.sub$)).subscribe(() => {
+      this.getProjectUsers()
+    })
+  }
+
+  chooseUser() {
+    this.chooseUserActive = !this.chooseUserActive
+  }
+
+  onSubmit() {
+    const userIds = [...this.projectUserIds, this.userForm.value.userId];
+
+    this.projectsService.addProjectUser({
+      projectId: this.projectId,
+      userIds
+    })
+    .pipe(takeUntil(this.sub$))
+    .subscribe(() => {
+      this.getProjectUsers();
+      this.chooseUser();
+    })
+  }
+
+  addNewUser(){
+    const dialog = this.dialog.open(UserAddEditComponent);
+
+    dialog.afterClosed().pipe().subscribe((result: User) => {
+      if (result) {
+        this.getProjectUsers()
+      }
+    })
   }
 
 }
