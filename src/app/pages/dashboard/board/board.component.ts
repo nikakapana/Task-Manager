@@ -8,13 +8,19 @@ import {TaskAddEditComponent} from "../task-add-edit/task-add-edit.component";
 import * as _ from 'lodash';
 import {Tasks} from "../../../core/interfaces/task";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {Observable} from "rxjs";
+import {User} from "../../../core/interfaces";
+import {ProjectsService} from "../../../core/services/projects.service";
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit {
 
+
+
+export class BoardComponent implements OnInit {
+  users$: Observable<User[]> = this.projectsService.getProjectUsers()
 
   tasks: any = {
     6: [
@@ -37,7 +43,8 @@ export class BoardComponent implements OnInit {
      private boardService: BoardService,
      private route: ActivatedRoute,
      public dialog: MatDialog,
-     private taskService: TaskService
+     private taskService: TaskService,
+     private projectsService: ProjectsService
   ) {
   }
 

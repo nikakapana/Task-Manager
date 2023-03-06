@@ -1,7 +1,14 @@
 <div class="board-head">
 
-<h1>{{board.name}}</h1>
-  <h3>{{board.description}}</h3>
+
+  <div class="user-list">
+    <h3>Users:</h3>
+    <div *ngFor="let user of users$ | async" class="user-item">
+      {{user.email}}
+    </div>
+  </div>
+
+  <h1 class="board-name" >Board: {{board.name}}</h1>
 
 </div>
 <div class="dashboard" cdkDropListGroup>
