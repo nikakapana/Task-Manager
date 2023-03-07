@@ -2,7 +2,7 @@
   <h1>Choose your board</h1>
 
 <div class="board-cards">
-  <a class="board-card" [routerLink]="['/dashboard', board.id]" *ngFor="let board of boards$ |async">
+  <a class="board-card" [routerLink]="[board.id]" *ngFor="let board of boards$ |async">
   Board Name: {{board.name}}
   </a>
   </div>
