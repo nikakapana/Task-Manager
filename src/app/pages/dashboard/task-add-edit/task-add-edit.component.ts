@@ -11,6 +11,7 @@ import {IssueType, User} from "../../../core/interfaces";
 import {Epic} from "../../../core/interfaces/epic";
 import {TaskPriority} from "../../../core/enums";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {DialogDataService} from "../../../core/services/dialog-data.service";
 
 @Component({
   selector: 'app-task-add-edit',
@@ -57,7 +58,8 @@ export class TaskAddEditComponent implements OnInit{
     private boardService: BoardService,
     private projectsService: ProjectsService,
     public dialogRef: MatDialogRef<TaskAddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { taskId: number, boardId: number, column: Column, isBacklog: boolean  }
+    private dialogDataService: DialogDataService,
+    @Inject(MAT_DIALOG_DATA) public data: { taskId: number, boardId: number, column: Column, isBacklog: boolean, createdAt: any   }
   ) {
   }
 
@@ -103,7 +105,7 @@ export class TaskAddEditComponent implements OnInit{
     if (this.data.column) {
       this.form.patchValue({boardColumnId: this.data.column.id})
     }
-
+    this.dialogDataService.setDialogData(this.data);
 
   }
 

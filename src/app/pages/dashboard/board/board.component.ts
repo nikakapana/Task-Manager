@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {BoardService} from "../../../core/services/board.service";
 import {ActivatedRoute} from "@angular/router";
 import {Board, Column} from "../../../core/interfaces/board";
@@ -14,7 +14,8 @@ import {ProjectsService} from "../../../core/services/projects.service";
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss']
+  styleUrls: ['./board.component.scss'],
+
 })
 
 
@@ -22,21 +23,10 @@ import {ProjectsService} from "../../../core/services/projects.service";
 export class BoardComponent implements OnInit {
   users$: Observable<User[]> = this.projectsService.getProjectUsers()
 
-  tasks: any = {
-    6: [
-      {
-        id: 1,
-        title: 'Task 1',
-      },
-      {
-        id: 2,
-        title: 'Task 2',
-      },
-      {
-        id: 3,
-        title: 'Task 3',
-      }
-    ] }
+  tasks: any = {}
+
+  dialogData: any;
+
   boardId!: number;
   board: Board = {} as Board;
   constructor(
@@ -44,7 +34,9 @@ export class BoardComponent implements OnInit {
      private route: ActivatedRoute,
      public dialog: MatDialog,
      private taskService: TaskService,
-     private projectsService: ProjectsService
+     private projectsService: ProjectsService,
+
+
   ) {
   }
 
@@ -54,6 +46,7 @@ export class BoardComponent implements OnInit {
         this.boardId = +params['id']
         this.getBoard()
       }
+
     })
   }
 
@@ -83,7 +76,6 @@ export class BoardComponent implements OnInit {
       console.log(currentTask)
       this.taskService.updateTask(currentTask.id, currentTask).subscribe(task => {
 
-        console.log(task)
         this.getTasks()
       })
     }
@@ -122,6 +114,8 @@ export class BoardComponent implements OnInit {
   private getTasks() {
     this.taskService.getTasks({boardId: this.boardId}).subscribe(tasks => {
       this.tasks = _.groupBy(tasks, 'boardColumnId')
+      console.log(tasks)
+
     })
   }
 
