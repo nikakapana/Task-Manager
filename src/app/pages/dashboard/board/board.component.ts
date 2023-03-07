@@ -22,13 +22,19 @@ import {ProjectsService} from "../../../core/services/projects.service";
 
 export class BoardComponent implements OnInit {
   users$: Observable<User[]> = this.projectsService.getProjectUsers()
-
+  boards$ = this.boardService.getBoards();
   tasks: any = {}
 
   dialogData: any;
 
   boardId!: number;
   board: Board = {} as Board;
+currBoard = this.boardService.getBoard(this.boardId)
+  selectedBoard: any;
+
+  onBoardSelected(board: any) {
+    this.selectedBoard = board;
+  }
   constructor(
      private boardService: BoardService,
      private route: ActivatedRoute,
@@ -46,8 +52,8 @@ export class BoardComponent implements OnInit {
         this.boardId = +params['id']
         this.getBoard()
       }
-
     })
+    this.onBoardSelected(this.boardId)
   }
 
   drop(event: CdkDragDrop<any>, column: Column) {
