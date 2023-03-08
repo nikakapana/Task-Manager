@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '../../../../core/services/board.service';
 import { MatTabGroup } from '@angular/material/tabs';
 import { TaskStatus } from 'src/app/core/enums/task-status.enum';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board-add-edit',
@@ -104,5 +105,9 @@ export class BoardAddEditComponent implements OnInit {
 
   close() {
     this.router.navigate(['/projects/setting/boards']).then();
+  }
+
+  drop($event: CdkDragDrop<any, any>) {
+
   }
 }

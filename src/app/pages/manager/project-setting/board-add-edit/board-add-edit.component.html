@@ -28,8 +28,10 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Add a Column">
-                    <div formArrayName="columns">
-                        <div *ngFor="let column of columnsFormArray.controls; let i = index" class="item">
+                    <div formArrayName="columns" cdkDropList cdkDropListOrientation="vertical"
+                        (cdkDropListDropped)="drop($event)">
+                        <div *ngFor="let column of columnsFormArray.controls; let i = index" class="item" cdkDrag>
+                            <div class="placeholder" *cdkDragPlaceholder></div>
                             <mat-divider></mat-divider>
                             <div [formGroupName]="i">
                                 <mat-form-field class="example-full-width">

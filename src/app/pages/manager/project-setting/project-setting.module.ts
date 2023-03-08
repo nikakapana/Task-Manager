@@ -20,6 +20,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDialogModule,
     MatExpansionModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    DragDropModule
   ]
 })
 export class ProjectSettingModule { }
