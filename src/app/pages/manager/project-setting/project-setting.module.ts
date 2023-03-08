@@ -17,6 +17,9 @@ import { BoardComponent } from './board/board.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -41,8 +44,10 @@ import { MatDialogModule } from "@angular/material/dialog";
     MatButtonModule,
     MatTabsModule,
     MatSelectModule,
-    MatDialogModule
-
+    MatDialogModule,
+    MatExpansionModule,
+    MatDividerModule,
+    MatMenuModule
   ]
 })
 export class ProjectSettingModule { }

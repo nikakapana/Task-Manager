@@ -18,10 +18,22 @@ export class BoardAddEditComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  boardId!: number;
+
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      console.log(params)
+      if (params['id']) {
+        this.boardId = +params['id'];
+        this.getBoard();
+      }
+    })
   }
 
+
+
   form: FormGroup = new FormGroup({
+    id: new FormControl(null),
     name: new FormControl(null, [Validators.required]),
     description: new FormControl(null, [Validators.required]),
     position: new FormControl(1),
@@ -53,16 +65,44 @@ export class BoardAddEditComponent implements OnInit {
     }, Validators.required));
   }
 
-  submit() {
-    console.log(this.boardService.createBoard(this.form.value))
-    this.boardService.createBoard(this.form.value)
-      .subscribe(res => {
-        this.router.navigate(['/projects/setting/boards']).then()
+  getBoard() {
+    this.boardService.getBoard(this.boardId).subscribe(res => {
+      this.form.patchValue(res)
+      res.columns.forEach(column => {
+        this.columnsFormArray.push(new FormGroup({
+          id: new FormControl(column.id),
+          name: new FormControl(column.name, Validators.required),
+          description: new FormControl(column.description, Validators.required),
+          position: new FormControl(column.position, Validators.required),
+          taskStatus: new FormControl(column.taskStatus, Validators.required)
+        }, Validators.required));
       })
+    })
+  }
+
+  submit() {
+    this.form.markAllAsTouched();
+    if (this.form.invalid) {
+      return;
+    }
+    if (this.boardId) {
+
+      this.boardService.updateBoard(this.form.value).subscribe(res => {
+        console.log(res)
+        this.router.navigate(['/projects/setting/boards']).then();
+      })
+    } else {
+      this.boardService.createBoard(this.form.value)
+        .subscribe(res => {
+          console.log(res);
+          this.router.navigate(['/projects/setting/boards']).then();
+        })
+    }
+
 
   }
 
   close() {
-    history.back();
+    this.router.navigate(['/projects/setting/boards']).then();
   }
 }

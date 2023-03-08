@@ -9,6 +9,7 @@ import { BoardAddEditComponent } from "./board-add-edit/board-add-edit.component
 import { IssueTypeAddEditComponent } from "./issue-type-add-edit/issue-type-add-edit.component";
 import { BoardComponent } from "./board/board.component";
 
+
 const routes: Routes = [{
   path: '',
   component: ProjectSettingComponent,
