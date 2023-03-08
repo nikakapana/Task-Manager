@@ -7,7 +7,7 @@
       {{user.email}}
     </div>
   </div>
-<div>
+<div class="boards-container">
   <a [routerLink]="['/dashboard/' + board.id]" class="board-name" [class.selected]="selectedBoard === board.id"  (click)="onBoardSelected(board.id)" *ngFor="let board of boards$ | async">Board: {{board.name}}</a>
 
 </div>
