@@ -8,6 +8,7 @@ import { TaskAddEditComponent } from './task-add-edit/task-add-edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {RouterModule} from "@angular/router";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -16,16 +17,16 @@ import {RouterModule} from "@angular/router";
     BoardComponent,
     TaskAddEditComponent
   ],
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    DashboardRoutingModule,
-    DragDropModule,
-    ReactiveFormsModule,
-    RouterModule
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        DashboardRoutingModule,
+        DragDropModule,
+        ReactiveFormsModule,
+        RouterModule,
+        NgxSpinnerModule
 
 
-
-  ]
+    ]
 })
 export class DashboardModule { }

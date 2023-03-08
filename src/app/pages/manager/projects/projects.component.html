@@ -4,6 +4,9 @@
 </div>
 <h1>Your Projects</h1>
 <div class="projects-container">
+
+
+
   <div *ngFor="let item of projects" class="project-container">
     <div class="card work">
       <div class="img-section" style="--project-color: {{item.color}};">
@@ -29,3 +32,6 @@
     </div>
   </div>
 </div>
+<ngx-spinner  color="#1098ad" size="large" style="color: #1098ad;" bdColor="none" type="square-jelly-box">
+  <p class="loading">Please Wait...</p>
+</ngx-spinner>
