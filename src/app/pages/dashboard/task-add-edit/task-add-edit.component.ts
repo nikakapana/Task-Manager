@@ -34,11 +34,11 @@ export class TaskAddEditComponent implements OnInit{
     id: new FormControl(null),
     name: new FormControl(null, Validators.required),
     description: new FormControl(null, Validators.required),
-    issueTypeId: new FormControl(null, Validators.required),
-    epicId: new FormControl(null),
-    priority: new FormControl(null, Validators.required),
-    assigneeId: new FormControl(null),
-    reporterId: new FormControl(null, Validators.required),
+    issueTypeId: new FormControl('select Issue Type', Validators.required),
+    epicId: new FormControl('Epic'),
+    priority: new FormControl('priority', Validators.required),
+    assigneeId: new FormControl('Assign User'),
+    reporterId: new FormControl('Reporter User', Validators.required),
     boardId: new FormControl(null),
     boardColumnId: new FormControl(null),
     isBacklog: new FormControl(false, Validators.required),
@@ -57,7 +57,7 @@ export class TaskAddEditComponent implements OnInit{
     private boardService: BoardService,
     private projectsService: ProjectsService,
     public dialogRef: MatDialogRef<TaskAddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { taskId: number, boardId: number, column: Column, isBacklog: boolean  }
+    @Inject(MAT_DIALOG_DATA) public data: { taskId: number, boardId: number, column: Column, isBacklog: boolean, createdAt: any   }
   ) {
   }
 
@@ -103,7 +103,6 @@ export class TaskAddEditComponent implements OnInit{
     if (this.data.column) {
       this.form.patchValue({boardColumnId: this.data.column.id})
     }
-
 
   }
 

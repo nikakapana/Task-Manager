@@ -7,25 +7,29 @@
         <textarea rows="10" placeholder="Description" class="form-input" formControlName="description"></textarea>
       </div>
       <div class="content-right">
-        <select class="form-select" formControlName="issueTypeId">
-          <label for="task"  >Task Type</label>
+
+        <select class="form-select"  formControlName="issueTypeId">
+          <option  value="select Issue Type" disabled selected hidden>select Issue Type</option>
           <option id="task" *ngFor="let type of types$ | async" [value]="type.id">{{type.name}}</option>
 
         </select>
+
         <select class="form-select" formControlName="epicId">
-          <option disabled selected>Epic</option>
+          <option value="Epic" disabled selected hidden>Epic</option>
           <option *ngFor="let epic of epics$ | async" [value]="epic.id">{{epic.name}}</option>
         </select>
+        <label for="priority">Priority:
         <select class="form-select" formControlName="priority">
-          <option disabled selected hidden>Task Priority</option>
-          <option *ngFor="let priority of priority" [value]="priority">{{priority}}</option>
+          <option value="Task Priority" disabled selected hidden>Task Priority</option>
+          <option id="priority" *ngFor="let priority of priority" [value]="priority">{{priority}}</option>
         </select>
+        </label>
         <select class="form-select" formControlName="assigneeId">
-          <option disabled selected hidden>Assign User</option>
+          <option value="Assign User" disabled selected hidden>Assign User</option>
           <option *ngFor="let user of users$ |async" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>
         </select>
         <select class="form-select" formControlName="reporterId">
-          <option disabled selected hidden>Reporter User</option>
+          <option value="Reporter User" disabled selected hidden>Reporter User</option>
           <option *ngFor="let user of users$ |async" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>
         </select>
 

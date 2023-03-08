@@ -7,9 +7,10 @@
       {{user.email}}
     </div>
   </div>
+<div>
+  <a [routerLink]="['/dashboard/' + board.id]" class="board-name" [class.selected]="selectedBoard === board.id"  (click)="onBoardSelected(board.id)" *ngFor="let board of boards$ | async">Board: {{board.name}}</a>
 
-  <h1 class="board-name" >Board: {{board.name}}</h1>
-
+</div>
 </div>
 <div class="dashboard" cdkDropListGroup>
 
@@ -26,8 +27,12 @@
 
       <div class="task" *ngFor="let task of tasks[column.id] || []" cdkDrag (dblclick)="viewTask(task, column)">
         <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <div class="task-header">
         <h4>{{task.id}}</h4>
-        <p>{{task.name}}</p>
+          <h4>{{task.createdBy.email}}</h4>
+        </div>
+        <p>{{task.description}}</p>
+<div class="createdBy">{{task.createdAt | date:'yyyy-MM-dd HH:mm'}}</div>
       </div>
     </div>
   </div>
