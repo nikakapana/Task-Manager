@@ -11,6 +11,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag
 import {Observable} from "rxjs";
 import {User} from "../../../core/interfaces";
 import {ProjectsService} from "../../../core/services/projects.service";
+import {NgxSpinnerService} from "ngx-spinner";
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -41,12 +42,14 @@ currBoard = this.boardService.getBoard(this.boardId)
      public dialog: MatDialog,
      private taskService: TaskService,
      private projectsService: ProjectsService,
+     private spinner: NgxSpinnerService
 
 
   ) {
   }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.boardId = +params['id']
@@ -94,6 +97,7 @@ currBoard = this.boardService.getBoard(this.boardId)
       console.log(board)
       this.board = board
       this.getTasks()
+      this.spinner.hide()
     })
   }
 
