@@ -131,7 +131,7 @@ currBoard = this.boardService.getBoard(this.boardId)
 
   viewTask(task: Tasks, column: Column) {
     const  dialogRef = this.dialog.open(TaskAddEditComponent, {
-      width: '1000px',
+      width: '600px',
       data: {
         boardId: this.boardId,
         column: column,

@@ -20,7 +20,7 @@
        [cdkDropListData]="tasks[column.id] || []"
        (cdkDropListDropped)="drop($event,column)">
 <div class="column-header">
-    <div class="">{{ column.name }}</div>
+    <div class="">{{ column.taskStatus }}</div>
     <div ><button class="task-button" (click)="addTask(column)">Add Task</button></div>
 </div>
     <div class="column-body">
