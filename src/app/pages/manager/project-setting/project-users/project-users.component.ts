@@ -52,7 +52,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
   }
 
   getProjectUsers() {
-    this.projectsService.getProjectUsers(this.projectId).pipe(takeUntil(this.sub$)).subscribe(users => {
+    this.projectsService.getProjectUsersByProjectId(this.projectId).pipe(takeUntil(this.sub$)).subscribe(users => {
         this.projectUserIds = users.map((user: User) => user.id)
         this.dataSource.data = users
       }
@@ -96,13 +96,13 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
       userIds
     })
     .pipe(takeUntil(this.sub$))
-    
+
   }
 
   addNewUser(){
     const dialog = this.dialog.open(UserAddEditComponent);
 
-    dialog.afterClosed().pipe().subscribe((result: User) => {      
+    dialog.afterClosed().pipe().subscribe((result: User) => {
       if (result) {
         const userIds = [...this.projectUserIds, result.id]
         this.createUsers(userIds).subscribe(() => {

@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProjectsService} from "../../../core/services/projects.service";
 import {Subject, takeUntil} from "rxjs";
 import {Project} from "../../../core/interfaces";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-projects',
@@ -13,11 +14,14 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   sub$ = new Subject()
   projects: Project[] = []
   constructor(
-    private projectsService: ProjectsService
+    private projectsService: ProjectsService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
+    this.spinner.show().then()
     this.getAll()
+
   }
 
 
@@ -27,7 +31,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         this.projects = res
         console.log(this.projects)
-
+        this.spinner.hide().then()
       })
   }
 

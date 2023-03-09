@@ -6,6 +6,7 @@ import { ProjectsComponent } from './projects.component';
 import { ProjectAddEditComponent } from "../project-setting/project-add-edit/project-add-edit.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import {MatLegacySnackBarModule as MatSnackBarModule} from "@angular/material/legacy-snack-bar";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -13,11 +14,12 @@ import {MatLegacySnackBarModule as MatSnackBarModule} from "@angular/material/le
     ProjectsComponent,
     ProjectAddEditComponent
   ],
-  imports: [
-    CommonModule,
-    ProjectsRoutingModule,
-    ReactiveFormsModule,
-    MatSnackBarModule
-  ]
+    imports: [
+        CommonModule,
+        ProjectsRoutingModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        NgxSpinnerModule,
+    ]
 })
 export class ProjectsModule { }
