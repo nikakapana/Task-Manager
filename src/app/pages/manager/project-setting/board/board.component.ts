@@ -13,7 +13,7 @@ export class BoardComponent implements OnInit {
 
   boards$: Observable<Board[]> = this.boardService.getBoards();
   boardId!: number
-  board!: Board
+  board: Board = {} as Board
 
   constructor(
     private boardService: BoardService,
