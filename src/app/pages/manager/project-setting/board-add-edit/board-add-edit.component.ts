@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '../../../../core/services/board.service';
 import { MatTabGroup } from '@angular/material/tabs';
 import { TaskStatus } from 'src/app/core/enums/task-status.enum';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board-add-edit',
@@ -107,7 +107,11 @@ export class BoardAddEditComponent implements OnInit {
     this.router.navigate(['/projects/setting/boards']).then();
   }
 
-  drop($event: CdkDragDrop<any, any>) {
-
+  drop(event: CdkDragDrop<any, any>) {
+    moveItemInArray(this.columnsFormArray.controls, event.previousIndex, event.currentIndex);
+    console.log(this.columnsFormArray.controls)
+    this.columnsFormArray.controls.forEach((control, index) => {
+      control.get('position')?.setValue(index + 1)
+    })
   }
 }
