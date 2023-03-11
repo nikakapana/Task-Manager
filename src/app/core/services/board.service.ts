@@ -15,11 +15,11 @@ export class BoardService extends BaseService {
   createBoard(data: any): Observable<Board> {
     return this.post<Board>('board', data);
   }
-
   getBoard(id: number): Observable<Board> {
-    console.log(this.get<Board>(`board/${id}`))
     return this.get<Board>(`board/${id}`);
   }
+
+
 
   updateBoard(data: any): Observable<Board> {
     return this.put<Board>(`board/${data.id}`, data);

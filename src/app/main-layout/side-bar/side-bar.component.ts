@@ -12,7 +12,7 @@ export class SideBarComponent implements OnInit {
 
   panelOpenState = false;
   constructor(
-    private authFacadeService: AuthFacadeService
+    private authFacadeService: AuthFacadeService,
 
   ) { }
 

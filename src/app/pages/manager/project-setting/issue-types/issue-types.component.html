@@ -17,8 +17,10 @@
       <td>{{element.name}}</td>
       <td>{{element.createdAt}}</td>
       <td>
+        <div class="buttons">
         <button class="button-primary" [routerLink]="['/projects/setting/issue-types/edit', element.id]">Edit</button>
         <button class="button-warn" (click)="deleteIssueType(element.id)">Delete</button>
+        </div>
       </td>
     </tr>
     </tbody>

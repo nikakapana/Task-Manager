@@ -7,21 +7,33 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
         loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
-      },{
-        path: 'auth',
-        loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+
+      {
+        path: 'roles',
+        loadChildren: () => import('./pages/roles/roles.module').then(m => m.RolesModule)
       },
       {
         path: 'projects',
-        canActivate: [AuthGuard],
         loadChildren: () => import('./pages/manager/projects/projects.module').then(m => m.ProjectsModule)
       }
-]
-  }
+]},
+  {
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+  },
+
+
   ]
 
 @NgModule({

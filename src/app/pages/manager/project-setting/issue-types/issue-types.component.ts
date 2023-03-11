@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {of, Subject, switchMap, takeUntil} from "rxjs";
 import {IssueTypeService} from "../../../../core/services/issue-type.service";
-import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationPopUpComponent} from "../../../../shared/contirmation-pop-up/confirmation-pop-up.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-issue-types',

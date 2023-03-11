@@ -5,7 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import {RouterModule, RouterOutlet} from "@angular/router";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatButtonModule} from "@angular/material/button";
+import {MatLegacyButtonModule as MatButtonModule} from "@angular/material/legacy-button";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
@@ -24,7 +24,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatButtonModule,
     MatExpansionModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+
   ],
   exports: [
     MainLayoutComponent

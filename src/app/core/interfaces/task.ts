@@ -31,4 +31,13 @@ export interface Tasks {
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date;
+    taskProperty: TaskProperty[]
+}
+
+export interface TaskProperty {
+  di: number;
+  name: string;
+  fieldName: string;
+  value: string;
+  isRequired: boolean
 }

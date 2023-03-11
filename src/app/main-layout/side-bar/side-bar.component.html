@@ -1,3 +1,5 @@
+
+
 <ng-container *ngIf="userIsAuthenticated;">
   <mat-accordion class="acordion">
     <mat-expansion-panel hideToggle>
@@ -30,9 +32,20 @@
         <a routerLink="/projects/setting/issue-types">Issue types</a>
       </li>
       <li>
+        <a routerLink="/projects/setting/epics">Epics</a>
+      </li>
+      <li>
         <a routerLink="/projects/setting/users">Users</a>
       </li>
     </ul>
   </div>
 
+
+
+  <div class="sidebar roles">
+    <a routerLink="/roles">Manage Roles</a>
+  </div>
+
+
 </ng-container>
+

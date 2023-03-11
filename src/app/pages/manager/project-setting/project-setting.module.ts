@@ -21,6 +21,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatTableModule } from '@angular/material/table';
+import { UserModule } from '../../user/user.module';
 
 
 @NgModule({
@@ -42,14 +44,18 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    MatTabsModule,
+     MatTabsModule,
     MatSelectModule,
     MatDialogModule,
     MatExpansionModule,
     MatDividerModule,
     MatMenuModule,
-    DragDropModule
+    DragDropModule,
+
+
+    MatTableModule,
+    UserModule
+
   ]
 })
 export class ProjectSettingModule { }
