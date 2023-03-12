@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {MainLayoutComponent} from "./main-layout/main-layout.component";
-import {AuthGuard} from "./core/guards/auth.guard";
+import { MainLayoutComponent } from "./main-layout/main-layout.component";
+import { AuthGuard } from "./core/guards/auth.guard";
+import { UpdatePasswordComponent } from './pages/update-password/update-password.component';
 
 const routes: Routes = [
   {
@@ -26,15 +27,20 @@ const routes: Routes = [
       {
         path: 'projects',
         loadChildren: () => import('./pages/manager/projects/projects.module').then(m => m.ProjectsModule)
+      },
+      {
+        path: 'updatePassword',
+        component: UpdatePasswordComponent
       }
-]},
+    ]
+  },
   {
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
 
 
-  ]
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
