@@ -5,42 +5,51 @@
   //color: aliceblue
 
 
-.logo {
-  padding: 1rem;
+  .logo {
+    padding: 1rem;
 
-  margin-top: 3rem;
+    margin-top: 3rem;
 
-}
+  }
+
   .newProject {
     color: #545861;
     margin-right: 2rem;
     border: none;
   }
+
   a {
     text-decoration: none;
     color: white;
 
   }
-select {
-  padding: 1rem;
-  border-radius: 1.5rem;
-  margin-right: 1rem;
-  color: white;
-  background-color: #545861;
-}
-.nav-item {
-  margin-right: 5rem;
-  background-color: #545861;
-  border-radius: 2rem;
-  &:hover {
-    background-color: #2b4048;
+
+  select {
+    padding: 1rem;
+    border-radius: 1.5rem;
+    margin-right: 1rem;
+    color: white;
+    background-color: #545861;
   }
-}
 
-button {
-  margin-right: 10rem;
-background-color: #545861;
+  .nav-item {
+    margin-right: 5rem;
+    background-color: #545861;
+    border-radius: 2rem;
+
+    &:hover {
+      background-color: #2b4048;
+    }
+  }
+
+  button {
+    margin-right: 10rem;
+    background-color: #545861;
 
 
-}
+  }
+
+  i {
+    color: #fff;
+  }
 }

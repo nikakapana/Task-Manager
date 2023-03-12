@@ -1,7 +1,9 @@
+import { HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces';
 import { BaseService } from './base.service';
+import { PasswordUpdate } from '../interfaces/password-update';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,7 @@ export class UserService extends BaseService {
     return this.get('users')
   }
 
-  getAllUsers(): Observable<any>{
+  getAllUsers(): Observable<any> {
     return this.get('users/all')
   }
 
@@ -30,7 +32,13 @@ export class UserService extends BaseService {
     return this.put(`users/${id}`, data)
   }
 
-  deleteUser(id: number){
+  deleteUser(id: number) {
     return this.delete(`users/${id}`)
+  }
+
+  updatePassword(old: string, newPassword: string, check: string): Observable<any> {
+    const body: PasswordUpdate = { oldPassword: old, password: newPassword, checkPassword: check };
+    console.log(body)
+    return this.post('users/passwordUpdate', body);
   }
 }
