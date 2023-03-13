@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UserService } from 'src/app/core/services/user.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import {Router} from "@angular/router";
 
 
 
@@ -14,7 +15,8 @@ export class UpdatePasswordComponent {
 
   constructor(
     private userService: UserService,
-    private toast: HotToastService
+    private toast: HotToastService,
+    private router: Router
   ) { }
 
   errorMessage: string | undefined;
@@ -59,6 +61,8 @@ export class UpdatePasswordComponent {
           this.toast.error('Wrong Password');
         }
       );
+
+      this.router.navigate(['/auth'])
     }
   }
 }
