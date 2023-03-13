@@ -13,7 +13,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
       },
       {
         path: 'dashboard',

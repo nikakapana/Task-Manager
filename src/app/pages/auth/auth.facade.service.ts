@@ -3,6 +3,7 @@ import {AuthService} from "../../core/services/auth.service";
 import {AuthResponse, Login, User} from "../../core/interfaces";
 import {tap} from "rxjs";
 import {CookieStorageService} from "../../core/services/cookie.service";
+import {ProjectFacade} from "../../core/facades/project.facade";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import {CookieStorageService} from "../../core/services/cookie.service";
 export class AuthFacadeService extends AuthService{
 
   cookieStorageService: CookieStorageService = inject(CookieStorageService);
-
+projectFacade: ProjectFacade = inject(ProjectFacade)
   override login(payload: Login) {
     return super.login(payload).pipe(
       tap((response: AuthResponse) => {
@@ -36,6 +37,10 @@ export class AuthFacadeService extends AuthService{
         console.log(this.RefreshToken);
 
         this.setUser(response.user);
+        if (response.user.projects.length) {
+
+          this.projectFacade.setProject(response.user.projects[0].id)
+        }
 
         console.log(this.token);
         console.log(this.user);
