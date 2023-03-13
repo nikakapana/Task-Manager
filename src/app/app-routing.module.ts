@@ -31,7 +31,8 @@ const routes: Routes = [
       {
         path: 'updatePassword',
         component: UpdatePasswordComponent
-      }
+      },
+
     ]
   },
   {
