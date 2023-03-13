@@ -8,13 +8,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsersComponent } from './components/users/users.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
 
 @NgModule({
   declarations: [
-    UserAddEditComponent
+    UserAddEditComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    MatTableModule,
+    MatPaginatorModule
 
   ],
   exports: [

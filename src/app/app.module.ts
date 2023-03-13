@@ -17,6 +17,7 @@ import { ProjectEpicsComponent } from './pages/manager/project-epics/project-epi
 import { EpicAddEditComponent } from './pages/manager/epic-add-edit/epic-add-edit.component';
 import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -39,7 +40,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     RouterOutlet,
     MatButtonModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+
+    MatTableModule
 
   ],
   providers: [

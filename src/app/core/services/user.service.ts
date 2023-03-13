@@ -14,8 +14,8 @@ export class UserService extends BaseService {
     return this.post('users', data)
   }
 
-  getUsers() {
-    return this.get('users')
+  getUsers(params: {} ={}): Observable<any> {
+    return this.get('users', params)
   }
 
   getAllUsers(): Observable<any>{

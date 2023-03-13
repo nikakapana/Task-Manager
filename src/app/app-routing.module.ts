@@ -28,10 +28,16 @@ const routes: Routes = [
         path: 'projects',
         canActivate: [AuthGuard],
         loadChildren: () => import('./pages/manager/projects/projects.module').then(m => m.ProjectsModule)
+      },
+
+      {
+        path: 'users',
+        loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)
       }
-]
+      
+    ]
   }
-  ]
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

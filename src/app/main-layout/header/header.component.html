@@ -5,6 +5,9 @@
     <ng-container *ngIf="userIsAuthenticated; else notAuthenticated">
 
       <a routerLink="/" class="nav-item" mat-raised-button>Home</a>
+
+      <a routerLink="/users" class="nav-item" mat-raised-button>users</a>
+
       <a routerLink="/dashboard" class="newProject">Dashboard</a>
       <select [ngModel]="currentProject?.id" (ngModelChange)="selectProject($event)">
       <option *ngFor="let project of projects$ | async" [value]="project.id">
