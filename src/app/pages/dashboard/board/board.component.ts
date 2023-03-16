@@ -8,10 +8,11 @@ import {TaskAddEditComponent} from "../task-add-edit/task-add-edit.component";
 import * as _ from 'lodash';
 import {Tasks} from "../../../core/interfaces/task";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
-import {Observable} from "rxjs";
+import {Observable, of, switchMap, takeUntil} from "rxjs";
 import {User} from "../../../core/interfaces";
 import {ProjectsService} from "../../../core/services/projects.service";
 import {NgxSpinnerService} from "ngx-spinner";
+import {ConfirmationPopUpComponent} from "../../../shared/contirmation-pop-up/confirmation-pop-up.component";
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -143,5 +144,26 @@ currBoard = this.boardService.getBoard(this.boardId)
         this.getTasks()
       }
     })}
+
+
+  deleteTask(id: number) {
+    const dialogRef = this.dialog.open(ConfirmationPopUpComponent);
+
+    dialogRef.afterClosed()
+      .pipe(
+
+        switchMap((result) => {
+          if (result) {
+            return this.taskService.deleteTask(id);
+          }
+          return of(null);
+        })
+      ).subscribe(result => {
+      if (result) {
+        this.getTasks();
+      }
+    });
+
+  }
 
 }

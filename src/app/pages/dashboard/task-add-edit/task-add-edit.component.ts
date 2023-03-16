@@ -6,11 +6,12 @@ import { BoardService } from "../../../core/services/board.service";
 import { ProjectsService } from "../../../core/services/projects.service";
 import { Board, Column } from "../../../core/interfaces/board";
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Observable, Subject, takeUntil } from "rxjs";
+import {Observable, of, Subject, switchMap, takeUntil} from "rxjs";
 import { IssueType, User } from "../../../core/interfaces";
 import { Epic } from "../../../core/interfaces/epic";
 import { TaskPriority } from "../../../core/enums";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ConfirmationPopUpComponent} from "../../../shared/contirmation-pop-up/confirmation-pop-up.component";
 
 @Component({
   selector: 'app-task-add-edit',
@@ -52,6 +53,7 @@ export class TaskAddEditComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
+    public dialog: MatDialog,
     private issueTypeService: IssueTypeService,
     private epicService: EpicService,
     private boardService: BoardService,
@@ -163,4 +165,6 @@ export class TaskAddEditComponent implements OnInit {
         })
       })
   }
+
+
 }
