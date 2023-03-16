@@ -8,8 +8,8 @@
       </div>
       <div class="content-right">
 
-        <select class="form-select"  formControlName="issueTypeId">
-          <option  value="select Issue Type" disabled selected hidden>select Issue Type</option>
+        <select class="form-select" formControlName="issueTypeId">
+          <option value="select Issue Type" disabled selected hidden>select Issue Type</option>
           <option id="task" *ngFor="let type of types$ | async" [value]="type.id">{{type.name}}</option>
 
         </select>
@@ -18,11 +18,17 @@
           <option value="Epic" disabled selected hidden>Epic</option>
           <option *ngFor="let epic of epics$ | async" [value]="epic.id">{{epic.name}}</option>
         </select>
-        <label for="priority">Priority:
-        <select class="form-select" formControlName="priority">
-          <option value="Task Priority" disabled selected hidden>Task Priority</option>
-          <option id="priority" *ngFor="let priority of priority" [value]="priority">{{priority}}</option>
+
+        <select class="form-select" formControlName="boardId" *ngIf="data.isBacklog">
+          <option value="select Board" disabled selected hidden>select Board</option>
+          <option id="task" *ngFor="let board of boards$ | async" [value]="board.id">{{board.name}}</option>
+
         </select>
+        <label for="priority">Priority:
+          <select class="form-select" formControlName="priority">
+            <option value="Task Priority" disabled selected hidden>Task Priority</option>
+            <option id="priority" *ngFor="let priority of priority" [value]="priority">{{priority}}</option>
+          </select>
         </label>
         <select class="form-select" formControlName="assigneeId">
           <option value="Assign User" disabled selected hidden>Assign User</option>
@@ -37,7 +43,8 @@
 
         <div formArrayName="taskProperty">
           <div *ngFor="let property of taskProperty.controls; let i = index" [formGroupName]="i">
-            <input type="text" [placeholder]="property.get('name')?.value" class="form-input" formControlName="value" [required]="form.get('isRequired')?.value">
+            <input type="text" [placeholder]="property.get('name')?.value" class="form-input" formControlName="value"
+              [required]="form.get('isRequired')?.value">
           </div>
         </div>
       </div>
@@ -45,7 +52,6 @@
   </div>
   <div class="dialog-actions">
     <button class="cancel-button" (click)="dialogRef.close()">Cancel</button>
-    <button class="save-button" (click)="save()">Create</button>
+    <button class="save-button" (click)="save()">Save</button>
   </div>
 </div>
-

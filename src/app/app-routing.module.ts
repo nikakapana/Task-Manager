@@ -32,6 +32,10 @@ const routes: Routes = [
         path: 'updatePassword',
         component: UpdatePasswordComponent
       },
+      {
+        path: 'backlog',
+        loadComponent: () => import('./pages/backlog/backlog.component').then(m => m.BacklogComponent)
+      }
 
     ]
   },
@@ -39,8 +43,6 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
-
-
 ]
 
 @NgModule({
