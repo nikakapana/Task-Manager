@@ -27,11 +27,13 @@
 
       <div class="task" *ngFor="let task of tasks[column.id] || []" cdkDrag (dblclick)="viewTask(task, column)">
         <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <p class="issue-type" >{{task.issueType.type}}</p>
         <div class="task-header">
         <h4>{{task.id}}</h4>
           <h4>{{task.createdBy.email}}</h4>
         </div>
         <p>{{task.description}}</p>
+
 <div class="createdBy">{{task.createdAt | date:'yyyy-MM-dd HH:mm'}}</div>
       </div>
     </div>
