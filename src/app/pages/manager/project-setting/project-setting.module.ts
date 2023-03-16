@@ -13,7 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { BoardComponent } from './board/board.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from "@angular/material/dialog";
@@ -33,7 +32,6 @@ import { UserModule } from '../../user/user.module';
     ProjectUsersComponent,
     BoardAddEditComponent,
     IssueTypeAddEditComponent,
-    BoardComponent,
   ],
   imports: [
     CommonModule,
@@ -44,15 +42,13 @@ import { UserModule } from '../../user/user.module';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-     MatTabsModule,
+    MatTabsModule,
     MatSelectModule,
     MatDialogModule,
     MatExpansionModule,
     MatDividerModule,
     MatMenuModule,
     DragDropModule,
-
-
     MatTableModule,
     UserModule
 

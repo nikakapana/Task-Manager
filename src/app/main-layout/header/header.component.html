@@ -16,6 +16,7 @@
         </button>
       </mat-menu>
       <a routerLink="/dashboard" class="newProject">Dashboard</a>
+      <a routerLink="/backlog" class="newProject">Backlog</a>
       <select [ngModel]="currentProject?.id" (ngModelChange)="selectProject($event)">
         <option *ngFor="let project of projects$ | async" [value]="project.id">
           {{project.name}}
