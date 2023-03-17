@@ -1,23 +1,24 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {TaskService} from "../../../core/services/task.service";
-import {IssueTypeService} from "../../../core/services/issue-type.service";
-import {EpicService} from "../../../core/services/epic.service";
-import {BoardService} from "../../../core/services/board.service";
-import {ProjectsService} from "../../../core/services/projects.service";
-import {Board, Column} from "../../../core/interfaces/board";
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Observable, Subject, takeUntil} from "rxjs";
-import {IssueType, User} from "../../../core/interfaces";
-import {Epic} from "../../../core/interfaces/epic";
-import {TaskPriority} from "../../../core/enums";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import { Component, Inject, OnInit } from '@angular/core';
+import { TaskService } from "../../../core/services/task.service";
+import { IssueTypeService } from "../../../core/services/issue-type.service";
+import { EpicService } from "../../../core/services/epic.service";
+import { BoardService } from "../../../core/services/board.service";
+import { ProjectsService } from "../../../core/services/projects.service";
+import { Board, Column } from "../../../core/interfaces/board";
+import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import {Observable, of, Subject, switchMap, takeUntil} from "rxjs";
+import { IssueType, User } from "../../../core/interfaces";
+import { Epic } from "../../../core/interfaces/epic";
+import { TaskPriority } from "../../../core/enums";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ConfirmationPopUpComponent} from "../../../shared/contirmation-pop-up/confirmation-pop-up.component";
 
 @Component({
   selector: 'app-task-add-edit',
   templateUrl: './task-add-edit.component.html',
   styleUrls: ['./task-add-edit.component.scss']
 })
-export class TaskAddEditComponent implements OnInit{
+export class TaskAddEditComponent implements OnInit {
 
 
   sub$ = new Subject();
@@ -52,12 +53,13 @@ export class TaskAddEditComponent implements OnInit{
 
   constructor(
     private taskService: TaskService,
+    public dialog: MatDialog,
     private issueTypeService: IssueTypeService,
     private epicService: EpicService,
     private boardService: BoardService,
     private projectsService: ProjectsService,
     public dialogRef: MatDialogRef<TaskAddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { taskId: number, boardId: number, column: Column, isBacklog: boolean, createdAt: any   }
+    @Inject(MAT_DIALOG_DATA) public data: { taskId: number, boardId: number, column: Column, isBacklog: boolean, createdAt: any }
   ) {
   }
 
@@ -87,7 +89,7 @@ export class TaskAddEditComponent implements OnInit{
         })
     }
     if (this.data.isBacklog) {
-      this.form.patchValue({isBacklog: this.data.isBacklog})
+      this.form.patchValue({ isBacklog: this.data.isBacklog })
       this.form.get('boardId')?.clearValidators()
       this.form.get('boardColumnId')?.clearValidators()
     } else {
@@ -97,11 +99,11 @@ export class TaskAddEditComponent implements OnInit{
     this.form.get('boardId')?.updateValueAndValidity()
     this.form.get('boardColumnId')?.updateValueAndValidity()
     if (this.data.boardId) {
-      this.form.patchValue({boardId: this.data.boardId})
+      this.form.patchValue({ boardId: this.data.boardId })
     }
 
     if (this.data.column) {
-      this.form.patchValue({boardColumnId: this.data.column.id})
+      this.form.patchValue({ boardColumnId: this.data.column.id })
     }
 
   }
@@ -163,4 +165,6 @@ export class TaskAddEditComponent implements OnInit{
         })
       })
   }
+
+
 }

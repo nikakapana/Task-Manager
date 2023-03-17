@@ -1,7 +1,7 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {Observable} from "rxjs";
+import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
+import { Observable } from "rxjs";
 
 @Injectable(
 )
@@ -14,8 +14,10 @@ export class BaseService {
     return this.http.post<T>(this.apiUrl + url, body)
   }
 
-  get<T>(url: string, params?: any): Observable<T> {
-    return this.http.get<T>(this.apiUrl+ url);
+  get<T>(url: string, params = {}): Observable<T> {
+    return this.http.get<T>(this.apiUrl + url, {
+      params: params
+    });
 
   }
 
