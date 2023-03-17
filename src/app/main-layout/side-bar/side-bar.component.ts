@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthFacadeService} from "../../pages/auth/auth.facade.service";
+import { AuthFacadeService } from "../../pages/auth/auth.facade.service";
 
 
 @Component({

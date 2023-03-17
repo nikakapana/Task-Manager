@@ -1,4 +1,34 @@
-.acordion {
+.sidebar-container {
+  position: fixed;
+  bottom: 0;
+  min-width: 250px;
+  max-width: 250px;
+  height: calc(100% - 70px);
+  background-color: rgb(212, 228, 243);
+
+  //background: linear-gradient(to bottom, #d1c0c0a1, #cccccc);
+  //backdrop-filter: blur(10px);
+  //#c3dcf39f
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .sidebar-img {
+    background-image: url(../../../assets/sidebar-img.png);
+    width: 250px;
+    height: 300px;
+  }
+}
+
+
+
+
+
+
+/*.acordion {
   margin-top: 10rem;
   display: block;
 width: 80%;
@@ -39,4 +69,4 @@ a {
 
 .roles {
   border: 2px solid #545861;
-}
+}*/

@@ -1,48 +1,37 @@
 <ng-container *ngIf="userIsAuthenticated;">
-  <mat-accordion class="acordion">
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title class="side">
-          projects
-        </mat-panel-title>
-
-      </mat-expansion-panel-header>
-      <a routerLink="projects/create">create new project +</a>
-      <br>
-      <br>
-      <hr>
-      <br>
+  <div class="sidebar-container">
+    <div class="sidebar">
       <a routerLink="projects">All projects</a>
-    </mat-expansion-panel>
+
+      <div>
+        <ul>
+          <li>
+            <a routerLink="/projects/setting/info">Info</a>
+          </li>
+          <li>
+            <a routerLink="/projects/setting/boards">Boards</a>
+          </li>
+          <li>
+            <a routerLink="/projects/setting/issue-types">Issue types</a>
+          </li>
+          <li>
+            <a routerLink="/projects/setting/epics">Epics</a>
+          </li>
+          <li>
+            <a routerLink="/projects/setting/users">Users</a>
+          </li>
+        </ul>
+      </div>
 
 
-  </mat-accordion>
 
-  <div class="sidebar">
-    <ul>
-      <li>
-        <a routerLink="/projects/setting/info">Info</a>
-      </li>
-      <li>
-        <a routerLink="/projects/setting/boards">Boards</a>
-      </li>
-      <li>
-        <a routerLink="/projects/setting/issue-types">Issue types</a>
-      </li>
-      <li>
-        <a routerLink="/projects/setting/epics">Epics</a>
-      </li>
-      <li>
-        <a routerLink="/projects/setting/users">Users</a>
-      </li>
-    </ul>
+      <div class="sidebar roles">
+        <a routerLink="/roles">Manage Roles</a>
+      </div>
+    </div>
+    <div class="sidebar-img"></div>
   </div>
 
-
-
-  <div class="sidebar roles">
-    <a routerLink="/roles">Manage Roles</a>
-  </div>
 
 
 </ng-container>
