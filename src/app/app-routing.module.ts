@@ -27,7 +27,13 @@ const routes: Routes = [
       },
       {
         path: 'projects',
+        canActivate: [AuthGuard],
         loadChildren: () => import('./pages/manager/projects/projects.module').then(m => m.ProjectsModule)
+      },
+
+      {
+        path: 'users',
+        loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)
       },
       {
         path: 'updatePassword',
@@ -44,6 +50,7 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
+
 ]
 
 @NgModule({

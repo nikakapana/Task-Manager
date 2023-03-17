@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces';
 import { BaseService } from './base.service';
+import { PaginationResponse } from '../interfaces/pagination-response';
 import { PasswordUpdate } from '../interfaces/password-update';
 
 @Injectable({
@@ -16,8 +17,8 @@ export class UserService extends BaseService {
     return this.post('users', data)
   }
 
-  getUsers() {
-    return this.get('users')
+  getUsers(params: {} ={}): Observable<PaginationResponse<User>> {
+    return this.get('users', params)
   }
 
   getAllUsers(): Observable<any> {
@@ -40,5 +41,9 @@ export class UserService extends BaseService {
     const body: PasswordUpdate = { oldPassword: old, password: newPassword, checkPassword: check };
     console.log(body)
     return this.post('users/passwordUpdate', body);
+  }
+
+  updateUserRoles(params: { userId: number, roleIds: number[]}): Observable<User> {
+    return this.post(`users/roles`, params)
   }
 }

@@ -15,8 +15,9 @@ import { ProjectPageComponent } from './pages/manager/project-page/project-page.
 import { ProjectSettingComponent } from './pages/manager/project-setting/project-setting.component';
 import { ProjectEpicsComponent } from './pages/manager/project-epics/project-epics.component';
 import { EpicAddEditComponent } from './pages/manager/epic-add-edit/epic-add-edit.component';
-import { MatButtonModule } from "@angular/material/button";
-import { ReactiveFormsModule } from "@angular/forms";
+import {MatButtonModule} from "@angular/material/button";
+import {ReactiveFormsModule} from "@angular/forms";
+import { MatTableModule } from '@angular/material/table';
 import { UpdatePasswordComponent } from './pages/update-password/update-password.component';
 import { MatInputModule } from '@angular/material/input';
 import { HotToastModule } from '@ngneat/hot-toast';
@@ -52,6 +53,9 @@ import { HotToastModule } from '@ngneat/hot-toast';
       dismissible: true,
       autoClose: true,
     }),
+    NgxSpinnerModule,
+
+    MatTableModule
 
   ],
   providers: [
