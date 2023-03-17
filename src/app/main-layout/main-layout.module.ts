@@ -9,6 +9,9 @@ import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/lega
 import { MatExpansionModule } from "@angular/material/expansion";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ReactiveFormsModule,
     FormsModule,
     MatMenuModule,
-
+    MatTooltipModule,
+    MatSelectModule
   ],
   exports: [
     MainLayoutComponent

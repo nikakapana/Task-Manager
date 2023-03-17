@@ -3,13 +3,12 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-max-width: 90vw;
-
+  max-width: 100vw;
 
   .main {
 
-width: 100%;
-display: flex;
+    width: 100%;
+    display: flex;
     flex-direction: row;
 
 
@@ -20,14 +19,11 @@ display: flex;
     }
 
   }
-    .side {
-      width: 20%;
 
-    }
-
+  .side {
+    width: 20%;
 
   }
 
 
-
-
+}
