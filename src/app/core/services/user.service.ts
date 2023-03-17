@@ -34,4 +34,8 @@ export class UserService extends BaseService {
   deleteUser(id: number){
     return this.delete(`users/${id}`)
   }
+
+  updateUserRoles(params: { userId: number, roleIds: number[]}): Observable<User> {
+    return this.post(`users/roles`, params)
+  }
 }

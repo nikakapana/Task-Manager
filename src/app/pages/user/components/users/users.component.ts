@@ -7,6 +7,7 @@ import { User } from 'src/app/core/interfaces';
 import { UserService } from 'src/app/core/services/user.service';
 import { ConfirmationPopUpComponent } from '../../../../shared/contirmation-pop-up/confirmation-pop-up.component';
 import { UserAddEditComponent } from '../user-add-edit/user-add-edit.component';
+import { UserRoleComponent } from '../user-role/user-role.component';
 
 @Component({
   selector: 'app-users',
@@ -86,5 +87,19 @@ export class UsersComponent implements OnInit {
     this.pageIndex = $event.pageIndex + 1;
     this.pageSize = $event.pageSize;
     this.getUsers()    
+  }
+
+  setRole(user: User) {
+    const dialogRef = this.dialog.open(UserRoleComponent, {
+      data: {
+        user: user
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getUsers()
+      }
+    })
   }
 }
