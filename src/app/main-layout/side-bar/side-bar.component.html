@@ -1,8 +1,8 @@
 <ng-container *ngIf="userIsAuthenticated;">
   <div class="sidebar-container">
     <div class="sidebar">
-      <a routerLink="projects">All projects</a>
-
+      <a routerLink="projects" class="all">All projects</a>
+      <a routerLink="/roles" class="all">Manage Roles</a>
       <div>
         <ul>
           <li>
@@ -25,9 +25,7 @@
 
 
 
-      <div class="sidebar roles">
-        <a routerLink="/roles">Manage Roles</a>
-      </div>
+
     </div>
     <div class="sidebar-img"></div>
   </div>
