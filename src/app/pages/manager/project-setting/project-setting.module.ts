@@ -24,6 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import { UserModule } from '../../user/user.module';
 
 
+
 @NgModule({
   declarations: [
     ProjectInfoComponent,
