@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/core/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserAddEditComponent } from 'src/app/pages/user/components/user-add-edit/user-add-edit.component';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-project-users',
@@ -42,12 +43,14 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
     private projectsService: ProjectsService,
     private projectFacade: ProjectFacade,
     private userService: UserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) { }
 
 
 
   ngOnInit(): void {
+    this.spinner.show()
     this.getProjectUsers()
   }
 
@@ -55,6 +58,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
     this.projectsService.getProjectUsersByProjectId(this.projectId).pipe(takeUntil(this.sub$)).subscribe(users => {
         this.projectUserIds = users.map((user: User) => user.id)
         this.dataSource.data = users
+      this.spinner.hide()
       }
     )
   }

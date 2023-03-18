@@ -3,6 +3,7 @@ import {of, Subject, switchMap, takeUntil} from "rxjs";
 import {IssueTypeService} from "../../../../core/services/issue-type.service";
 import {ConfirmationPopUpComponent} from "../../../../shared/contirmation-pop-up/confirmation-pop-up.component";
 import {MatDialog} from "@angular/material/dialog";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-issue-types',
@@ -19,12 +20,14 @@ export class IssueTypesComponent implements OnInit {
   constructor(
     private issueTypeService: IssueTypeService,
     public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) {
 
   }
 
 
   ngOnInit(): void {
+    this.spinner.show()
     this.getIssueTypes();
   }
 
@@ -33,6 +36,7 @@ export class IssueTypesComponent implements OnInit {
       .pipe(takeUntil(this.sub$))
       .subscribe(IssueType => {
         this.dataSource = IssueType;
+        this.spinner.hide()
       });
   }
 

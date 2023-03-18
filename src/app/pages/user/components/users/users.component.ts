@@ -8,6 +8,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { ConfirmationPopUpComponent } from '../../../../shared/contirmation-pop-up/confirmation-pop-up.component';
 import { UserAddEditComponent } from '../user-add-edit/user-add-edit.component';
 import { UserRoleComponent } from '../user-role/user-role.component';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-users',
@@ -30,12 +31,14 @@ export class UsersComponent implements OnInit {
 
   constructor (
     private userService: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService
 
   ) {}
 
 
   ngOnInit(): void {
+    this.spinner.show()
     this.getUsers()
   }
 
@@ -45,7 +48,9 @@ export class UsersComponent implements OnInit {
       limit: this.pageSize
     }).subscribe( users => {
       this.dataSource.data = users.data;
-      this.total = users.totalCount
+      this.total = users.totalCount;
+      this.spinner.hide()
+
     })
   }
 
@@ -64,7 +69,7 @@ export class UsersComponent implements OnInit {
     })
   }
 
-  
+
   delete(id: number) {
     const dialogRef = this.dialog.open(ConfirmationPopUpComponent);
 
@@ -83,10 +88,10 @@ export class UsersComponent implements OnInit {
 
   pageEvent($event: PageEvent) {
     console.log($event);
-    
+
     this.pageIndex = $event.pageIndex + 1;
     this.pageSize = $event.pageSize;
-    this.getUsers()    
+    this.getUsers()
   }
 
   setRole(user: User) {

@@ -39,6 +39,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
+
   <mat-paginator [length]="total"
                  [pageSize]="pageSize"
                  [pageIndex]="pageIndex"
@@ -47,3 +48,6 @@
                  aria-label="Select page">
   </mat-paginator>
 
+<ngx-spinner  color="#1098ad" size="large" style="color: #1098ad;" bdColor="none" type="square-jelly-box">
+  <p class="loading">Please Wait...</p>
+</ngx-spinner>

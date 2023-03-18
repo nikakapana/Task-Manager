@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTableModule } from '@angular/material/table';
 import { UserModule } from '../../user/user.module';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -33,25 +34,26 @@ import { UserModule } from '../../user/user.module';
     BoardAddEditComponent,
     IssueTypeAddEditComponent,
   ],
-  imports: [
-    CommonModule,
-    ProjectSettingRoutingModule,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTabsModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatDividerModule,
-    MatMenuModule,
-    DragDropModule,
-    MatTableModule,
-    UserModule
+    imports: [
+        CommonModule,
+        ProjectSettingRoutingModule,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatTabsModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatExpansionModule,
+        MatDividerModule,
+        MatMenuModule,
+        DragDropModule,
+        MatTableModule,
+        UserModule,
+        NgxSpinnerModule
 
-  ]
+    ]
 })
 export class ProjectSettingModule { }

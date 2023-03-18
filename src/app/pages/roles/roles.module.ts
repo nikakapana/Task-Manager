@@ -8,6 +8,7 @@ import { PermissionAddEditComponent } from './permission-add-edit/permission-add
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatButtonModule} from "@angular/material/button";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -15,13 +16,14 @@ import {MatButtonModule} from "@angular/material/button";
     RolesComponent,
     PermissionAddEditComponent
   ],
-  imports: [
-    CommonModule,
-    RolesRoutingModule,
-    FormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatButtonModule
-  ]
+    imports: [
+        CommonModule,
+        RolesRoutingModule,
+        FormsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        NgxSpinnerModule
+    ]
 })
 export class RolesModule { }

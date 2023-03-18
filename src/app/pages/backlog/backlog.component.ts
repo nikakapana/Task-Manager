@@ -7,11 +7,12 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Subject, takeUntil, switchMap, of } from 'rxjs';
 import { TaskService } from 'src/app/core/services/task.service';
 import { TaskAddEditComponent } from '../dashboard/task-add-edit/task-add-edit.component';
+import {NgxSpinnerModule, NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-backlog',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, MatDialogModule],
+    imports: [CommonModule, RouterModule, MatButtonModule, MatDialogModule, NgxSpinnerModule],
   templateUrl: './backlog.component.html',
   styleUrls: ['./backlog.component.scss']
 })
@@ -24,6 +25,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
   constructor(
     private taskService: TaskService,
     public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) { }
 
   addTask(taskId?: number) {
@@ -37,6 +39,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.spinner.show()
     this.getBacklogTasks();
   }
 
@@ -45,6 +48,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.sub$))
       .subscribe(task => {
         this.dataSource = task;
+        this.spinner.hide()
       });
   }
 

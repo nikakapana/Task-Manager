@@ -3,6 +3,7 @@ import {of, Subject, switchMap, takeUntil} from "rxjs";
 import {EpicService} from "../../../core/services/epic.service";
 import {ConfirmationPopUpComponent} from "../../../shared/contirmation-pop-up/confirmation-pop-up.component";
 import {MatDialog} from "@angular/material/dialog";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-project-epics',
@@ -21,12 +22,14 @@ export class ProjectEpicsComponent implements OnInit{
   constructor(
     private epicService: EpicService,
     public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) {
 
   }
 
 
   ngOnInit(): void {
+    this.spinner.show()
     this.getEpics()
   }
 
@@ -35,6 +38,7 @@ export class ProjectEpicsComponent implements OnInit{
       .pipe(takeUntil(this.sub$))
       .subscribe(epics => {
         this.dataSource = epics;
+        this.spinner.hide()
       });
   }
 

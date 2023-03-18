@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserRoleComponent } from './components/user-role/user-role.component';
 import { MatSelectModule } from '@angular/material/select';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 
@@ -23,21 +24,22 @@ import { MatSelectModule } from '@angular/material/select';
     UsersComponent,
     UserRoleComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
+    imports: [
+        CommonModule,
+        UserRoutingModule,
 
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDialogModule,
-    ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatDialogModule,
+        ReactiveFormsModule,
 
-    MatTableModule,
-    MatPaginatorModule,
-    MatSelectModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        NgxSpinnerModule,
 
-  ],
+    ],
   exports: [
     UserAddEditComponent
   ]

@@ -6,6 +6,7 @@ import {PageEvent} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {Role} from "../../../core/interfaces/role";
 import {PaginationResponse} from "../../../core/interfaces/pagination-response";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-roles',
@@ -26,12 +27,14 @@ export class RolesComponent implements OnInit{
 
   constructor(
     private roleService: RoleService,
+    private spinner: NgxSpinnerService
 
   ) {
 
   }
 
   ngOnInit(): void {
+    this.spinner.show()
     this.getRoles();
   }
 
@@ -46,8 +49,9 @@ export class RolesComponent implements OnInit{
           this.dataSource.data = roles.data;
           this.total = roles.totalCount;
         }
-
+        this.spinner.hide()
       });
+
   }
 
   addRole(id?: number) {
