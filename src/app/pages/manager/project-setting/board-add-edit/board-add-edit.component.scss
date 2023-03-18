@@ -15,13 +15,13 @@
 }
 
 .container {
-    width: 60%;
+    width: 100%;
     min-height: 500px;
     height: auto;
-    position: absolute;
-    top: calc(50% - 250px);
-    left: 50%;
-    transform: translateX(-50%);
+    //position: absolute;
+    //top: calc(50% - 250px);
+    //left: 50%;
+    //transform: translateX(-50%);
     background-color: aliceblue;
     display: grid;
     grid-template-columns: 1fr 300px;

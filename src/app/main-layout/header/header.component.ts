@@ -69,15 +69,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   selectProject(projectId: any) {
-    console.log('before ' + projectId)
     this.projectFacade.setProject(projectId);
     this.currentProjectId = projectId;
     this.projectFacade.getProjectFromService(projectId).subscribe((res) => {
       this.currentProject = res;
       console.log(this.currentProject)
     })
-    //console.log(this.currentProject?.id)
-    //console.log(this.currentProject?.color)
     console.log(this.currentProject)
 
   }

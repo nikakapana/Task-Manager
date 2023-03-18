@@ -16,14 +16,20 @@
       width: 80%;
       max-width: 100rem;
       margin: 5rem auto;
+      padding-left: 20px;
+      position: relative;
+      top: 70px;
     }
 
+
+    .side {
+      width: 20%;
+      height: 100vw;
+      min-width: 250px;
+    }
   }
 
-  .side {
-    width: 20%;
 
-  }
 
 
 }

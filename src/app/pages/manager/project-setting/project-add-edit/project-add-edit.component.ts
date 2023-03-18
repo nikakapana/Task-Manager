@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import { FormControl, FormGroup, Validators} from "@angular/forms";
-import {ProjectsService} from "../../../../core/services/projects.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Subject, switchMap, takeUntil, tap} from "rxjs";
-import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
-import {ProjectFacade} from "../../../../core/facades/project.facade";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ProjectsService } from "../../../../core/services/projects.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Subject, switchMap, takeUntil, tap } from "rxjs";
+import { MatLegacySnackBar as MatSnackBar } from "@angular/material/legacy-snack-bar";
+import { ProjectFacade } from "../../../../core/facades/project.facade";
 
 
 
@@ -44,12 +44,12 @@ export class ProjectAddEditComponent implements OnInit, OnDestroy {
 
 
   form: FormGroup = new FormGroup({
-      id: new FormControl(''),
-      name: new FormControl('', Validators.required),
-      abbreviation: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      color: new FormControl('', Validators.required),
-    }
+    id: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    abbreviation: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    color: new FormControl('', Validators.required),
+  }
   )
 
   errorMessage?: string
@@ -98,5 +98,5 @@ export class ProjectAddEditComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub$.next(null)
     this.sub$.complete()
-    }
   }
+}
