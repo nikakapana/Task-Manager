@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatLegacySnackBarModule as MatSnackBarModule } from "@angular/material/legacy-snack-bar";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MatButtonModule } from '@angular/material/button'
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatButtonModule } from '@angular/material/button'
     ReactiveFormsModule,
     MatSnackBarModule,
     NgxSpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
   ]
 })
 export class ProjectsModule { }

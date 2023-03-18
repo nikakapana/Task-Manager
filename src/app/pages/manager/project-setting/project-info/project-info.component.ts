@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ProjectFacade} from "../../../../core/facades/project.facade";
-import {Project} from "../../../../core/interfaces";
+import { Component, OnInit } from '@angular/core';
+import { ProjectFacade } from "../../../../core/facades/project.facade";
+import { Project } from "../../../../core/interfaces";
 
 @Component({
   selector: 'app-project-info',
@@ -14,7 +14,7 @@ export class ProjectInfoComponent implements OnInit {
     return this.projectFacade.getProject()
   }
   constructor(
-    private projectFacade : ProjectFacade
+    private projectFacade: ProjectFacade
   ) { }
 
   ngOnInit(): void {
