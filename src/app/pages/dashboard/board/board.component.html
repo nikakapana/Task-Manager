@@ -30,11 +30,14 @@
         <div class="task-type-and-button-container">
         <div >
         <button class="task-delete" (click)="deleteTask(task.id)">X</button>
+
         </div>
+
         <p class="issue-type" >{{task.issueType.type}}</p>
         </div>
         <div class="task-header">
-        <h4>{{task.id}}</h4>
+          <h4>{{task.name}}</h4>
+
           <h4>{{task.createdBy.email}}</h4>
         </div>
         <p>{{task.description}}</p>
