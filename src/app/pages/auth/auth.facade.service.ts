@@ -12,6 +12,7 @@ export class AuthFacadeService extends AuthService{
 
   cookieStorageService: CookieStorageService = inject(CookieStorageService);
 projectFacade: ProjectFacade = inject(ProjectFacade)
+  cookieService: any;
   override login(payload: Login) {
     return super.login(payload).pipe(
       tap((response: AuthResponse) => {
@@ -64,6 +65,16 @@ projectFacade: ProjectFacade = inject(ProjectFacade)
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
+
+  // get roles(): string []{
+  //   const roles = this.cookieService.getCookie('roles')
+  //   return(roles ? JSON.parse(roles) : []) as string[]
+  // }
+
+  // get permissions(): string[] {
+  //   const permissions = localStorage.getItem('permissions')
+  //   return (permissions ? JSON.parse(permissions) : [] as string[])
+  // }
 
   signOut() {
     localStorage.clear();
