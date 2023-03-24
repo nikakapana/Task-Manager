@@ -66,15 +66,15 @@ projectFacade: ProjectFacade = inject(ProjectFacade)
     return user ? JSON.parse(user) : null;
   }
 
-  // get roles(): string []{
-  //   const roles = this.cookieService.getCookie('roles')
-  //   return(roles ? JSON.parse(roles) : []) as string[]
-  // }
+  get roles(): string []{
+    const roles = this.cookieService.getCookie('roles')
+    return(roles ? JSON.parse(roles) : []) as string[]
+  }
 
-  // get permissions(): string[] {
-  //   const permissions = localStorage.getItem('permissions')
-  //   return (permissions ? JSON.parse(permissions) : [] as string[])
-  // }
+  get permissions(): string[] {
+    const permissions = localStorage.getItem('permissions')
+    return (permissions ? JSON.parse(permissions) : [] as string[])
+  }
 
   signOut() {
     localStorage.clear();

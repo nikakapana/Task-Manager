@@ -6,9 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PermissionssGuard implements CanActivate {
+  authFacadeService: any;
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
+      const permissions = route.data['permissions'] as string[];
+
+      const userPermissions  = this.authFacadeService.permissions;
+
+
     return true;
   }
   
