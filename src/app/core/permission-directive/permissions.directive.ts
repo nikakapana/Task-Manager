@@ -33,9 +33,7 @@ export class PermissionsDirective implements AfterViewInit {
         if (!userPermissions) {
           this.elementRef.nativeElement.style.display = 'none';
         }
-        // else {
-        //   this.elementRef.nativeElement.style
-        // }
+
         this.cdr.detectChanges();
 
         console.log(this.elementRef.nativeElement);

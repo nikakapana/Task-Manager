@@ -7,7 +7,7 @@
 
       <a routerLink="/" class="nav-item" mat-raised-button>Home</a>
 
-      <a routerLink="/users" class="nav-item" mat-raised-button>All users</a>
+      <a [appPermissions]="['user:list']" routerLink="/users" class="nav-item" mat-raised-button>All users</a>
 
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <i class="fa-solid fa-user"></i>
