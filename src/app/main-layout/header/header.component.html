@@ -25,7 +25,7 @@
       <a routerLink="/dashboard" class="newProject">Dashboard</a>
       <a routerLink="/backlog" class="newProject">Backlog</a>
       <mat-select [(ngModel)]="currentProject!.id" (ngModelChange)="selectProject($event)" *ngIf="currentProject">
-        <mat-option *ngFor="let project of projects$ | async" [value]="project.id">
+        <mat-option [appPermissions]="['project:list']" *ngFor="let project of projects$ | async" [value]="project.id">
           {{project.name}}
         </mat-option>
       </mat-select>
