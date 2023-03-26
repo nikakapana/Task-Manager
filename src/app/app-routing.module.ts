@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from "./main-layout/main-layout.component";
 import { AuthGuard } from "./core/guards/auth.guard";
 import { UpdatePasswordComponent } from './pages/update-password/update-password.component';
+import {PermissionGuard} from "./core/guards/permission.guard";
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
 
       {
         path: 'roles',
+        canActivate: [PermissionGuard],
+        data: {
+          permissions: ['role:list']
+        },
         loadChildren: () => import('./pages/roles/roles.module').then(m => m.RolesModule)
       },
       {
@@ -33,6 +38,10 @@ const routes: Routes = [
 
       {
         path: 'users',
+        canActivate: [PermissionGuard],
+        data: {
+          permissions: ['user:list']
+        },
         loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)
       },
       {

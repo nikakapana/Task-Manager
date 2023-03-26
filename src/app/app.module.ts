@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { UpdatePasswordComponent } from './pages/update-password/update-password.component';
 import { MatInputModule } from '@angular/material/input';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { PermissionsDirective } from './core/permission-directive/permissions.directive';
 
 
 
@@ -34,6 +35,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
     ProjectEpicsComponent,
     EpicAddEditComponent,
     UpdatePasswordComponent,
+
 
   ],
   imports: [
@@ -55,7 +57,8 @@ import { HotToastModule } from '@ngneat/hot-toast';
     }),
     NgxSpinnerModule,
 
-    MatTableModule
+    MatTableModule,
+    PermissionsDirective
 
   ],
   providers: [

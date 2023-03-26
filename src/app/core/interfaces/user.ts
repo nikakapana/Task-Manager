@@ -1,4 +1,5 @@
 import { Role } from "./role";
+import {Project} from "./project";
 
 export interface User {
     id: number;
@@ -10,3 +11,15 @@ export interface User {
     projects: any[];
 }
 
+export interface UsersResponse {
+  id: number;
+  createdAt: Date;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobileNumber: string;
+  isActive: boolean;
+  userPermissions: string[];
+  roles: Role[];
+  projects: Project[];
+}

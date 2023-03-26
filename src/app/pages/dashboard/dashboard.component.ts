@@ -22,6 +22,9 @@ sub$ = new Subject()
 
     this.spinner.show();
 
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 5000);
     this.boards$.pipe(takeUntil(this.sub$)).subscribe(() => {
       this.spinner.hide()
     })

@@ -1,4 +1,4 @@
-import { User } from "./user";
+import {User, UsersResponse} from "./user";
 import {Token} from "./token";
 
 export interface SignUp {
@@ -15,7 +15,7 @@ export interface Login {
 
 
 export interface AuthResponse {
-    user: User;
+    user: UsersResponse;
     token: Token;
 }
 
