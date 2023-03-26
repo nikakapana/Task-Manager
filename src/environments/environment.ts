@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  fbDbUrl: 'http://localhost:3000/api/'
+  fbDbUrl: 'https://task-manager-back-2xxrnkjcb-nikakapana.vercel.app/'
 };
 
 /*
