@@ -1,8 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {map, Subject, switchMap, takeUntil, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthFacadeService} from "../auth.facade.service";
+import {AuthResponse, UsersResponse} from "../../../core/interfaces";
+import {CookieStorageService} from "../../../core/services/cookie.service";
+import {RoleService} from "../../../core/services/role.service";
 
 
 @Component({
@@ -18,12 +21,14 @@ export class LoginComponent implements OnInit, OnDestroy  {
       password: new FormControl('', [Validators.required]),
     })
 
-
-  sub$ = new Subject()
-
+  email: string | undefined;
+  sub$ = new Subject();
+  user: UsersResponse | undefined;
   constructor(
     private authFacadeService: AuthFacadeService,
-  private router: Router
+  private router: Router,
+    private cookieService: CookieStorageService,
+    private roleService: RoleService
   ) {
   }
 
@@ -37,13 +42,53 @@ export class LoginComponent implements OnInit, OnDestroy  {
     if (this.form.invalid) return
     console.log(this.form.value)
     this.authFacadeService.login(this.form.value)
-      .pipe(takeUntil(this.sub$))
+      .pipe(
+        tap(
+
+          (res: AuthResponse) => {
+            this.authFacadeService.updateUser(res.user);
+            this.user = res.user;
+            this.email = res.user.email;
+
+            const roles = res.user.roles.map((r: any) => r.name);
+            const expiration = new Date();
+            expiration.setDate(expiration.getDate() + 1);
+            this.cookieService.setCookie(
+              'roles',
+              JSON.stringify(roles),
+              expiration
+            );
+            localStorage.setItem('user', JSON.stringify(res.user));
+          }
+
+        )
+
+      ,
+      switchMap(() =>
+        this.roleService.getMyRole().pipe(
+          map((res: any) => {
+            const permissions: string[] = [];
+            const roles = res.forEach((r: any) => {
+              r.permissions &&
+              permissions.push(...r.permissions.map((p: any) => p.name));
+            });
+
+            localStorage.setItem('permissions', JSON.stringify(permissions));
+            this.authFacadeService.permissionsSubject.next(permissions);
+          })
+        )
+      ),
+    takeUntil(this.sub$)
+  )
       .subscribe( {
           next: res => {
-            if(res) {
+
               console.log(res)
-              this.router.navigate(['/'])
-            }
+              setTimeout(() => {
+                this.router.navigate(['/'])
+              }, 1000);
+
+
           }
         }
 

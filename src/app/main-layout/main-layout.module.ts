@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
+import {PermissionsDirective} from "../core/permission-directive/permissions.directive";
 
 
 
@@ -31,7 +32,8 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatMenuModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    PermissionsDirective
   ],
   exports: [
     MainLayoutComponent

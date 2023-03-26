@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BaseService} from "./base.service";
-import {Role} from "../interfaces/role";
+import {Role, RoleListResponse} from "../interfaces/role";
 import {Observable} from "rxjs";
 import {PaginationResponse} from "../interfaces/pagination-response";
 
@@ -42,7 +42,7 @@ export class RoleService extends BaseService{
     return this.post(`role/permissions`, params);
   }
 
-  getMyRoles(): Observable<any> {
-    return this.get(`role/my`);
+  getMyRole(): Observable<RoleListResponse> {
+    return this.get<RoleListResponse>('role/my');
   }
 }

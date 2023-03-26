@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {AuthService} from "../../core/services/auth.service";
 import {AuthResponse, Login, User} from "../../core/interfaces";
-import {tap} from "rxjs";
+import {BehaviorSubject, tap} from "rxjs";
 import {CookieStorageService} from "../../core/services/cookie.service";
 import {ProjectFacade} from "../../core/facades/project.facade";
 
@@ -11,6 +11,13 @@ import {ProjectFacade} from "../../core/facades/project.facade";
 export class AuthFacadeService extends AuthService{
 
   cookieStorageService: CookieStorageService = inject(CookieStorageService);
+
+  // @ts-ignore
+  private userSubject = new BehaviorSubject<User>(null);
+
+  user$ = this.userSubject.asObservable();
+
+  permissionsSubject = new BehaviorSubject<string[]>([]);
 projectFacade: ProjectFacade = inject(ProjectFacade)
   override login(payload: Login) {
     return super.login(payload).pipe(
@@ -71,6 +78,16 @@ projectFacade: ProjectFacade = inject(ProjectFacade)
     this.cookieStorageService.eraseCookie('refreshToken');
   }
 
-
+  get roles(): string[] {
+    const roles = this.cookieStorageService.getCookie('roles');
+    return (roles ? JSON.parse(roles) : []) as string[];
+  }
+  updateUser(user: User) {
+    this.userSubject.next(user);
+  }
+  get permissions(): string[] {
+    const permissions = localStorage.getItem('permissions');
+    return (permissions ? JSON.parse(permissions) : []) as string[];
+  }
 
 }
