@@ -42,7 +42,10 @@ export class LoginComponent implements OnInit, OnDestroy  {
           next: res => {
             if(res) {
               console.log(res)
-              this.router.navigate(['/'])
+              setTimeout(() => {
+                this.router.navigate(['/'])
+              }, 1000);
+
             }
           }
         }
