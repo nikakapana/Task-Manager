@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   refreshPage() {
     setTimeout(() => {
       window.location.reload();
-    }, 700);
+    }, 1000);
   }
 
   get userIsAuthenticated() {
@@ -81,7 +81,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       console.log(this.currentProject)
     })
     console.log(this.currentProject)
-this.refreshPage()
+// this.refreshPage()
   }
 
   ngOnDestroy(): void {
